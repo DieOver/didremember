@@ -1,0 +1,27 @@
+@baseUrl = http://localhost:3333/api
+@authToken = {{ createUser.response.body.id }}
+
+# @name users
+GET {{baseUrl}}/user/
+content-type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+
+# @name user
+GET {{baseUrl}}/user/1
+content-type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+
+# @name createUser
+POST {{baseUrl}}/user/
+content-type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "id": 4,
+  "name": "Ozzy",
+  "age": 6
+}

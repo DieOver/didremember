@@ -1,0 +1,9 @@
+:host {
+  --background-color: aquamarine;
+  --color: #222222;
+}
+
+Button {
+  background-color: var(--background-color);
+  color: var(--color);
+}
