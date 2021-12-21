@@ -18,7 +18,7 @@ export class AuthService {
       const { password, ...result } = user;
       return {
         access_token: this.jwtService.sign(result),
-      }
+      };
     } catch (error) {
       switch (error) {
         case 'user_not_found':
