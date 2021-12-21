@@ -6,12 +6,21 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
+
     "api": "npx nx serve nest-api",
     "api-test": "npx nx test nest-api",
     "api-build": "npx nx build nest-api",
     "api-build-prod": "npx nx build nest-api --configuration=production",
-    "app-android": "npx nx run nativescript-didremember-app:android",
-    "app-ios": "npx nx run nativescript-didremember-app:ios --device 'iPhone 8'"
+
+    "app-android:run": "npx nx run nativescript-didremember-app:android",
+    "app-android:run:prod": "npx nx run nativescript-didremember-app:android:prod",
+    "app-android:build": "npx nx build nativescript-didremember-app:android",
+    "app-android:build:prod": "npx nx build nativescript-didremember-app:android:prod",
+
+    "app-ios:run": "npx nx run nativescript-didremember-app:ios --device 'iPhone SE (2nd generation)'",
+    "app-ios:run:prod": "npx nx run nativescript-didremember-app:ios:prod --device 'iPhone SE (2nd generation)'",
+    "app-ios:build": "npx nx build nativescript-didremember-app:ios",
+    "app-ios:build:prod": "npx nx build nativescript-didremember-app:ios:prod"
   },
   "private": true,
   "dependencies": {
