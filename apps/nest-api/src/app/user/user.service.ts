@@ -1,6 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { IUser } from './interfaces/user.interface';
-
 @Injectable()
 export class UserService {
 
@@ -9,13 +8,19 @@ export class UserService {
       id: 1,
       name: 'Lennon',
       age: 31,
+      username: 'lennonc',
+      password: '1234'
     },
     {
       id: 2,
       name: 'Mayara',
       age: 29,
+      username: 'maytol',
+      password: '4321'
     },
   ];
+
+  constructor() {}
 
   async create(_body: IUser): Promise<IUser> {
     try {
@@ -24,6 +29,10 @@ export class UserService {
     } catch (error) {
       throw new HttpException('Erro ao adicionar usuário.', HttpStatus.INTERNAL_SERVER_ERROR);
     }
+  }
+
+  async findByUsername(username: string): Promise<IUser | undefined> {
+    return this.USERS.find(user => user.username == username);
   }
 
   async list(): Promise<IUser[]> {

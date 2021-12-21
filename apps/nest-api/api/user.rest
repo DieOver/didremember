@@ -1,5 +1,18 @@
 @baseUrl = http://localhost:3333/api
-@authToken = {{ createUser.response.body.id }}
+@authToken = {{ login.response.body.data.access_token }}
+
+###
+
+# @name login
+POST {{baseUrl}}/auth/login
+content-type: application/json
+
+{
+  "username": "lennonc",
+  "password": "1234"
+}
+
+###
 
 # @name users
 GET {{baseUrl}}/user/
