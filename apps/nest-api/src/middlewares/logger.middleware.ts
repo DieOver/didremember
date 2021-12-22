@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 
 export function logger(req: Request, res: Response, next: NextFunction) {
-  console.log(`Request...`);
+  const { headers, method, originalUrl, params, query, body } = req;
+  // console.log(headers.host, `[${method}]`, originalUrl, params, query, body, headers);
   next();
 }

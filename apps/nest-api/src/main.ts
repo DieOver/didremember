@@ -7,16 +7,18 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app/app.module';
-import * as helmet from 'helmet';
 import { ValidationPipe } from './pipes/validation.pipe';
 import { TransformInterceptor } from './middlewares/transform.interceptor';
+import * as helmet from 'helmet';
+import { logger } from './middlewares/logger.middleware';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  const globalPrefix = 'api';
-  app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3333;
+  const globalPrefix = 'api';
 
+  const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix(globalPrefix);
+  app.use(logger);
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalInterceptors(new TransformInterceptor());
   app.enableCors();

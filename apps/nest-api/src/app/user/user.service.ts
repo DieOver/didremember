@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { IUser } from './interfaces/user.interface';
+import { ERoles, IUser } from './interfaces/user.interface';
 @Injectable()
 export class UserService {
 
@@ -9,14 +9,16 @@ export class UserService {
       name: 'Lennon',
       age: 31,
       username: 'lennonc',
-      password: '1234'
+      password: '1234',
+      roles: [ERoles.ADMIN]
     },
     {
       id: 2,
       name: 'Mayara',
       age: 29,
       username: 'maytol',
-      password: '4321'
+      password: '4321',
+      roles: [ERoles.CLIENT]
     },
   ];
 
@@ -38,6 +40,7 @@ export class UserService {
   async list(): Promise<IUser[]> {
     try {
       const users: IUser[] = this.USERS;
+      users.forEach(user => user.password = undefined);
       return users;
     } catch (error) {
       throw new HttpException('Erro ao buscar usuários.', HttpStatus.INTERNAL_SERVER_ERROR);
@@ -48,6 +51,7 @@ export class UserService {
     try {
       const user: IUser = this.USERS.find((user) => user.id == _id);
       if (!user) throw 'user_not_found';
+      user.password = undefined;
       return user;
     } catch (error) {
       switch (error) {
@@ -65,6 +69,7 @@ export class UserService {
       if (!user) throw 'user_not_found';
       user.age = _body.age;
       user.name = _body.name;
+      user.password = undefined;
       return user;
     } catch (error) {
       switch (error) {

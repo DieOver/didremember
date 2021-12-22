@@ -10,7 +10,7 @@ export class AuthService {
     private jwtService: JwtService
   ) {}
 
-  async login(username: string, pass: string): Promise<any> {
+  async login(username: string, pass: string): Promise<{ access_token: string; }> {
     try {
       const user = await this.userService.findByUsername(username);
       if (!user) throw 'user_not_found';
