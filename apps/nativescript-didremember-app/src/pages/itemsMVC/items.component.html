@@ -1,13 +1,10 @@
-<ActionBar title="TODOS MVC"></ActionBar>
-
-<GridLayout>
-    <StackLayout>
-        <ng-container *ngFor="let todo of todos">
-            <Label
-                (tap)="onClickItem(todo)"
-                [text]="todo.id + '. ' + todo.title">
-            </Label>
-        </ng-container>
-        <app-button text="QWEQWEQWEQWEQWE"></app-button>
-    </StackLayout>
-</GridLayout>
+<StackLayout class="Page">
+  <did-toolbar title="POSTiT!"></did-toolbar>
+  <GridLayout columns="*" rows="*">
+    <ScrollView>
+      <WrapLayout style="padding: 8;" col="0" row="0">
+        <did-card [sizeScreen]="sizeScreen" *ngFor="let todo of todos" [count]="todo.id" [name]="todo.title" (tap)="onClickItem(todo)"></did-card>
+      </WrapLayout>
+    </ScrollView>
+  </GridLayout>
+</StackLayout>

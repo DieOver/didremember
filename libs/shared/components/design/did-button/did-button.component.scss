@@ -1,0 +1,12 @@
+@import '../colors';
+
+:host {
+  --background-color: var(--did-color-secondary);
+  --color: var(--did-color-primary);
+}
+
+Button {
+  background-color: var(--background-color);
+  color: var(--color);
+  font-weight: bold;
+}

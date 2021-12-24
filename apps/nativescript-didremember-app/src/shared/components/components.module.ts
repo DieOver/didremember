@@ -1,19 +1,16 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { NativeScriptCommonModule, NativeScriptFormsModule, NativeScriptModule } from '@nativescript/angular';
-import { AppButtonComponent } from './app-button/app-button.component';
+import {
+  NativeScriptCommonModule,
+  NativeScriptFormsModule,
+} from '@nativescript/angular';
 
-const ED = [
-  AppButtonComponent
-];
+const ED = [];
 
 @NgModule({
   exports: [...ED],
   declarations: [...ED],
-  imports: [
-    NativeScriptCommonModule,
-    NativeScriptFormsModule,
-  ],
+  imports: [NativeScriptCommonModule, NativeScriptFormsModule],
   providers: [],
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
 })
-export class ComponentsModule { }
+export class ComponentsModule {}

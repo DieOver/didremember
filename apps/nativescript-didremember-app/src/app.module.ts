@@ -17,7 +17,7 @@ import { ItemsService } from './shared/services/items/items.service';
   providers: [
     {
       provide: ItemsServiceContract,
-      useClass: ItemsServiceMock,
+      useClass: ItemsService,
     },
   ],
   schemas: [NO_ERRORS_SCHEMA],
