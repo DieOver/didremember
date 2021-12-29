@@ -1,4 +1,4 @@
 export interface IEnvironment {
   production: boolean;
-  baseUrl: string;
+  jsonplaceholder: string;
 }

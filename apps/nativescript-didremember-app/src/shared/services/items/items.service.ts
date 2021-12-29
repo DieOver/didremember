@@ -1,24 +1,24 @@
-import { Inject, Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { ItemsServiceContract } from "./items.service.contract";
-import { Item } from "../../../shared/interfaces/item.interface";
-import { HttpServiceContract } from "../../../shared/services/http/http.service.contract";
-import { HttpService } from "../../../shared/services/http/http.service";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ItemsServiceContract } from './items.service.contract';
+import { Item } from '../../../shared/interfaces/item.interface';
+import { HttpClient } from '@angular/common/http';
+import { endpoints } from '../../../../src/environments/endpoints';
+import { Utils } from '../../utils/util';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class ItemsService implements ItemsServiceContract {
+  constructor(private http: HttpClient) {}
 
-    constructor(
-        @Inject(HttpService) private http: HttpServiceContract
-    ) {}
+  items(): Observable<Item[]> {
+    return this.http.get<Item[]>(
+      Utils.replaceUrl(`${endpoints.items.todos}`)
+    );
+  }
 
-    items(): Observable<Item[]> {
-      return this.http.get<Item[]>(`https://jsonplaceholder.typicode.com/todos/`);
-    }
-
-    item(id: number): Observable<Item> {
-        return this.http.get<Item>(`https://jsonplaceholder.typicode.com/todos/${id}`);
-    }
-
+  item(id: number): Observable<Item> {
+    return this.http.get<Item>(
+      Utils.replaceUrl(`${endpoints.items.todo}`, { id })
+    );
+  }
 }
-

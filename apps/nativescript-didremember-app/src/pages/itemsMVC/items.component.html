@@ -1,9 +1,15 @@
 <StackLayout class="Page">
-  <did-toolbar title="POSTiT!"></did-toolbar>
+  <did-toolbar [fn]="onDrawerButtonTap" title="POSTiT!"></did-toolbar>
   <GridLayout columns="*" rows="*">
     <ScrollView>
-      <WrapLayout style="padding: 8;" col="0" row="0">
-        <did-card [sizeScreen]="sizeScreen" *ngFor="let todo of todos" [count]="todo.id" [name]="todo.title" (tap)="onClickItem(todo)"></did-card>
+      <WrapLayout style="padding: 8" col="0" row="0">
+        <did-card
+          *ngFor="let todo of todos"
+          [sizeScreen]="sizeScreen"
+          [count]="todo.id"
+          [name]="todo.title"
+          (tap)="onClickItem(todo)"
+        ></did-card>
       </WrapLayout>
     </ScrollView>
   </GridLayout>

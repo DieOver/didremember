@@ -31,9 +31,8 @@
 // since {N} core theme utilities are additive to any above class, these should always be last
 @import 'nativescript-theme-core/scss/utilities/index';
 
-
 .Page {
-  background-color: #FAFBFD;
+  background-color: #fafbfd;
 }
 
 .fab {
@@ -49,4 +48,9 @@
 .fas {
   font-family: 'Font Awesome 5 Free', 'fa-solid-900';
   font-weight: 900;
+}
+
+// Drawer navigation custom styles
+.nt-drawer__header-image {
+  color: grey;
 }

@@ -2,5 +2,5 @@ import { IEnvironment } from './environment.contract';
 
 export const environment: IEnvironment = {
   production: true,
-  baseUrl: ''
+  jsonplaceholder: 'https://jsonplaceholder.typicode.com'
 };

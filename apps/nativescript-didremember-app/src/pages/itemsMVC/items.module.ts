@@ -17,7 +17,7 @@ const routes: Routes = [{ path: '', component: ItemsMVCComponent }];
     NativeScriptCommonModule,
     NativeScriptFormsModule,
     ComponentsModule,
-    DesignModule
+    DesignModule,
   ],
   declarations: [ItemsMVCComponent],
   schemas: [NO_ERRORS_SCHEMA],

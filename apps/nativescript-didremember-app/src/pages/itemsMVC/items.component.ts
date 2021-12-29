@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Item } from '../../shared/interfaces/item.interface';
 import { ItemsServiceContract } from '../../shared/services/items/items.service.contract';
 import { Screen } from '@nativescript/core';
+import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
+import { Application } from '@nativescript/core';
 
 @Component({
   selector: 'ns-items',
@@ -16,9 +18,14 @@ export class ItemsMVCComponent implements OnInit {
   todos: Item[] = [];
   todo: Item = {} as Item;
 
+  onDrawerButtonTap = () => {
+    const sideDrawer = <RadSideDrawer>Application.getRootView();
+    sideDrawer.showDrawer();
+  };
+
   ngOnInit(): void {
     this.onQuery();
-    this.sizeScreen = (this.widthDIPs / 2) - 24;
+    this.sizeScreen = this.widthDIPs / 2 - 24;
   }
 
   onQuery(): void {
@@ -36,8 +43,8 @@ export class ItemsMVCComponent implements OnInit {
   onClickItem(item: Item): void {
     this.itemsS.item(item.id).subscribe({
       next: (result) => {
+        console.dir(result);
         this.todo = result;
-        console.dir(this.todo);
         this.navigateToDetail(item);
       },
       error: (error) => {
