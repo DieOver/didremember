@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Screen } from '@nativescript/core';
-import { PostitService } from '../../shared/services/postit/postit.service';
 import { IPostit } from '../../shared/interfaces/postit.interface';
 import { RouterExtensions } from '@nativescript/angular';
 import { Subscription } from 'rxjs';
+import { PostitServiceContract } from '../../shared/services/postit/postit.service.contract';
 
 @Component({
   selector: 'ns-home',
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   postits$: Subscription;
 
   constructor(
-    private postitService: PostitService,
+    private postitService: PostitServiceContract,
     private router: RouterExtensions
   ) {
     this.sizeScreen = this.widthDIPs / 2 - 24;
@@ -27,8 +27,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.postits$ = this.postitService.postits.subscribe({
       next: (res) => {
+        console.log('categorys', res);
         this.postits = res;
-        console.log('categorys', this.postits);
       },
       error: (error) => {
         console.error('categorys', error);

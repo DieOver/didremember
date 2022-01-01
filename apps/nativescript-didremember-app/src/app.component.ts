@@ -8,8 +8,8 @@ import {
 } from 'nativescript-ui-sidedrawer';
 import { filter } from 'rxjs/operators';
 import { Application } from '@nativescript/core';
-import { PostitService } from './shared/services/postit/postit.service';
 import { Utils } from './shared/utils/util';
+import { PostitServiceContract } from './shared/services/postit/postit.service.contract';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private routerExtensions: RouterExtensions,
-    private postitService: PostitService
+    private postitService: PostitServiceContract
   ) {
     // Use the component constructor to inject services.
   }
@@ -38,7 +38,6 @@ export class AppComponent implements OnInit {
         console.error('appVersion', error);
       });
 
-    // this.postitService.clear();
     this.postitService.init();
 
     this._activatedUrl = '/home';

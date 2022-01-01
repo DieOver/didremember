@@ -15,7 +15,7 @@ const ED = [
   DidToolbarComponent,
   DidCardComponent,
   DidInputTextComponent,
-  DidListItemComponent
+  DidListItemComponent,
 ];
 
 @NgModule({

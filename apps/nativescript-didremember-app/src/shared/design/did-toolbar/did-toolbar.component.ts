@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RouterExtensions } from '@nativescript/angular';
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import { Application } from '@nativescript/core';
+import { PostitServiceContract } from '../../services/postit/postit.service.contract';
 
 @Component({
   moduleId: module.id,
@@ -12,7 +13,7 @@ import { Application } from '@nativescript/core';
       <GridLayout class="actions-bar" columns="auto, *, auto" rows="38">
         <Button *ngIf="canBack" row="0" col="0" (tap)="back()" class="icon fas" text="&#xf060;"></Button>
         <Button *ngIf="!canBack" row="0" col="0" (tap)="onDrawerButtonTap()" class="icon fas" text="&#xf0c9;"></Button>
-        <Label row="0" col="2" class="title" [text]="title"></Label>
+        <Label row="0" col="2" class="title" (tap)="clear()" [text]="title"></Label>
       </GridLayout>
     </StackLayout>
   `
@@ -23,14 +24,16 @@ export class DidToolbarComponent implements OnInit {
   @Input('title') title: string = "";
   @Input('fn') fn: () => {}
 
-  constructor(private routerExtensions: RouterExtensions) {}
+  constructor(
+    private postitService: PostitServiceContract,
+    private routerExtensions: RouterExtensions
+  ) {}
+
+  back = () => this.routerExtensions.back();
+  clear = () => this.postitService.clear();
 
   ngOnInit(): void {
     console.log('INIT DID-TOOLBAR');
-  }
-
-  back() {
-    this.routerExtensions.back();
   }
 
   onDrawerButtonTap = (): void =>

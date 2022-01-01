@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { RouterExtensions } from '@nativescript/angular';
 import { IPostit } from '../../shared/interfaces/postit.interface';
-import { PostitService } from '../../shared/services/postit/postit.service';
+import { PostitServiceContract } from '../../shared/services/postit/postit.service.contract';
 import { Utils } from '../../shared/utils/util';
 
 @Component({
@@ -21,7 +21,7 @@ export class CategoryComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private routerExtensions: RouterExtensions,
-    private postitService: PostitService
+    private postitService: PostitServiceContract
   ) {}
 
   ngOnInit(): void {

@@ -6,7 +6,7 @@ import { PostitServiceContract } from './postit.service.contract';
 
 @Injectable({ providedIn: 'root' })
 export class PostitService implements PostitServiceContract {
-  postits = new BehaviorSubject<IPostit[]>([]);
+  public postits = new BehaviorSubject<IPostit[]>([]);
 
   init(): void {
     const postits: IPostit[] = this.list();
@@ -21,6 +21,7 @@ export class PostitService implements PostitServiceContract {
 
   save = (postits: IPostit[]): void => {
     ApplicationSettings.setString('postits', JSON.stringify(postits));
+    console.log('save', postits);
     this.postits.next(postits);
   }
 
