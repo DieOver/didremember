@@ -50,33 +50,41 @@
   font-weight: 900;
 }
 
-GridLayout.menu-content {
-  height: 100%;
-  GridLayout {
-    padding: 8 16;
-    border-top-width: 1;
-    border-top-color: $did-color-light;
-    &[last-child] {
-      border-bottom-width: 1;
-      border-bottom-color: $did-color-light;
-    }
-    Label.menu-version {
-      font-size: 14;
-      color: $did-color-primary-light;
-    }
-    Label.menu-icon {
-      margin-right: 8;
-      color: $did-color-primary-light;
-    }
-    Label.menu-label {
-      color: $did-color-primary-light;
-    }
-    &.selected {
+GridLayout.menu {
+  StackLayout.menu-header {
+    background-color: $did-color-primary;
+  }
+  GridLayout.menu-content {
+    height: 100%;
+    GridLayout {
+      padding: 8 16;
+      border-top-width: 1;
+      border-top-color: $did-color-light;
+      &[last-child] {
+        border-bottom-width: 1;
+        border-bottom-color: $did-color-light;
+      }
+      &[version] {
+        background-color: $did-color-primary;
+        Label.menu-version {
+          font-size: 14;
+          color: $did-color-lightner;
+        }
+      }
       Label.menu-icon {
-        color: $did-color-primary;
+        margin-right: 8;
+        color: $did-color-primary-light;
       }
       Label.menu-label {
-        color: $did-color-primary;
+        color: $did-color-primary-light;
+      }
+      &.selected {
+        Label.menu-icon {
+          color: $did-color-primary;
+        }
+        Label.menu-label {
+          color: $did-color-primary;
+        }
       }
     }
   }

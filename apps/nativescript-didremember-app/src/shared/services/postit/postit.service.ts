@@ -30,6 +30,13 @@ export class PostitService implements PostitServiceContract {
     this.save(postits);
   }
 
+  edit(postit: IPostit): void {
+    const postits: IPostit[] = this.list();
+    const index = postits.findIndex((fipostit) => fipostit.id === postit.id);
+    postits[index] = postit;
+    this.save(postits);
+  }
+
   remove(id: string): void {
     const postits: IPostit[] = this.list();
     const index = postits.findIndex((postit) => postit.id === id);

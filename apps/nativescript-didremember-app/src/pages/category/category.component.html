@@ -1,26 +1,31 @@
 <StackLayout class="Page">
   <did-toolbar [canBack]="true" title="POSTiT!"></did-toolbar>
-  <GridLayout columns="*" rows="auto">
-    <ScrollView [scrollBarIndicatorVisible]="false">
-      <StackLayout class="content">
-        <StackLayout class="header">
-          <ng-container [formGroup]="categoryForm">
-            <GridLayout columns="auto" rows="auto,auto">
-              <did-input-text controlName="name" label="Categoria" col="0" row="0"></did-input-text>
-              <did-button [fn]="save" col="0" row="2" text="Salvar"></did-button>
-            </GridLayout>
-          </ng-container>
-        </StackLayout>
-        <StackLayout class="categories">
-          <Label class="title" text="Categorias"></Label>
-          <ng-container *ngIf="postits.length else notFind">
-            <ng-container *ngFor="let postit of postits">
-              <did-list-item [item]="postit"></did-list-item>
-            </ng-container>
-          </ng-container>
-        </StackLayout>
+  <GridLayout columns="*" rows="*">
+    <StackLayout class="content">
+      <StackLayout class="header">
+        <ng-container [formGroup]="categoryForm">
+          <GridLayout columns="auto" rows="auto,auto">
+            <did-input-text [errors]="f.name.errors" controlName="name" label="Categoria" col="0" row="0"></did-input-text>
+            <FlexboxLayout width="100%" col="0" row="2">
+              <did-button *ngIf="selectPostit?.id != null" class="cancel" [fn]="cancel" text="Cancelar"></did-button>
+              <did-button [fn]="submit" text="{{ selectPostit?.id ? 'Editar' : 'Salvar' }}"></did-button>
+            </FlexboxLayout>
+          </GridLayout>
+        </ng-container>
       </StackLayout>
-    </ScrollView>
+      <StackLayout class="categories">
+        <Label class="title" text="Categorias"></Label>
+        <ScrollView [scrollBarIndicatorVisible]="false">
+          <StackLayout>
+            <ng-container *ngIf="postits.length else notFind">
+              <ng-container *ngFor="let postit of postits">
+                <did-list-item (delete)="deleteItem($event)" (select)="selectItem($event)" [selected]="selectPostit" [item]="postit"></did-list-item>
+              </ng-container>
+            </ng-container>
+          </StackLayout>
+        </ScrollView>
+      </StackLayout>
+    </StackLayout>
   </GridLayout>
 </StackLayout>
 

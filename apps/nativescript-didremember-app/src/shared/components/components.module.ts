@@ -3,8 +3,11 @@ import {
   NativeScriptCommonModule,
   NativeScriptFormsModule,
 } from '@nativescript/angular';
+import { DidToolbarComponent } from './did-toolbar/did-toolbar.component';
 
-const ED = [];
+const ED = [
+  DidToolbarComponent
+];
 
 @NgModule({
   exports: [...ED],

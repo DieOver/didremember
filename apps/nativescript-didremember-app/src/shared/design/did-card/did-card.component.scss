@@ -1,14 +1,22 @@
-:host {
+@import '../../../scss/colors';
 
+:host {
+  --background-color: #c3f44d;
+  --padding: 16;
+  --margin: 8;
+  --text-align: center;
+  --vertical-align: center;
+
+  --label-color: #325862;
 }
 
 StackLayout.card {
-  background-color: #c3f44d;
-  padding: 16;
-  margin: 8;
-  text-align: center;
-  vertical-align: center;
+  background-color: var(--background-color);
+  padding: var(--padding);
+  margin: var(--margin);
+  text-align: var(--text-align);
+  vertical-align: var(--vertical-align);
   Label {
-    color: #325862;
+    color: var(--label-color);
   }
 }

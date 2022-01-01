@@ -6,6 +6,12 @@ StackLayout.content {
     border-bottom-color: $did-color-contrast-one;
     GridLayout {
       margin: 16;
+      FlexboxLayout {
+        .cancel {
+          --width: 80%;
+          --margin: 0 8 0 0;
+        }
+      }
     }
   }
   StackLayout.categories {
@@ -13,6 +19,7 @@ StackLayout.content {
     Label.title {
       font-size: 16;
       color: $did-color-primary;
+      margin-bottom: 16;
     }
   }
 }

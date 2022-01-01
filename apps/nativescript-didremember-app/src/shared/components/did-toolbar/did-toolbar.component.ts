@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterExtensions } from '@nativescript/angular';
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import { Application } from '@nativescript/core';
@@ -18,11 +18,11 @@ import { PostitServiceContract } from '../../services/postit/postit.service.cont
     </StackLayout>
   `
 })
-export class DidToolbarComponent implements OnInit {
+export class DidToolbarComponent {
 
-  @Input('canBack') canBack: boolean = false;
-  @Input('title') title: string = "";
-  @Input('fn') fn: () => {}
+  @Input('canBack') canBack = false;
+  @Input('title') title = "";
+  @Input('fn') fn = () => console.log('VoidFunction');
 
   constructor(
     private postitService: PostitServiceContract,
@@ -31,8 +31,6 @@ export class DidToolbarComponent implements OnInit {
 
   back = () => this.routerExtensions.back();
   clear = () => this.postitService.clear();
-
-  ngOnInit(): void {}
 
   onDrawerButtonTap = (): void =>
     (<RadSideDrawer>Application.getRootView()).showDrawer();

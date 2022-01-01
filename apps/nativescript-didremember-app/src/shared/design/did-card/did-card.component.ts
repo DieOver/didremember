@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -11,11 +11,10 @@ import { Component, Input, OnInit } from '@angular/core';
     </StackLayout>
   `
 })
-export class DidCardComponent implements OnInit {
+export class DidCardComponent {
 
   @Input('count') count = "";
   @Input('name') name = "";
   @Input('sizeScreen') sizeScreen = 0;
 
-  ngOnInit(): void {}
 }

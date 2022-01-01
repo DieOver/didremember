@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ControlContainer, FormGroupDirective } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { ControlContainer, FormGroupDirective, ValidationErrors } from '@angular/forms';
 
 @Component({
   moduleId: module.id,
@@ -8,22 +8,30 @@ import { ControlContainer, FormGroupDirective } from '@angular/forms';
   viewProviders: [
     {
       provide: ControlContainer,
-      useExisting: FormGroupDirective
-    }
+      useExisting: FormGroupDirective,
+    },
   ],
   template: `
     <StackLayout class="input-text">
-      <Label [text]="label"></Label>
+      <Label class="label" [text]="label"></Label>
       <TextField [formControlName]="controlName" [hint]="hint"></TextField>
+      <StackLayout class="errors">
+        <Label *ngIf="error?.required" text="Necessário ter um Nome"></Label>
+        <Label *ngIf="error?.minlength" text="Necessário ter {{ error?.minlength?.requiredLength }} ou mais caracteres"></Label>
+      </StackLayout>
     </StackLayout>
   `,
 })
-export class DidInputTextComponent implements OnInit {
-  @Input('label') label: string = 'Label';
-  @Input('hint') hint: string = '';
-  @Input('controlName') controlName: string = '';
+export class DidInputTextComponent {
+  @Input('label') label = 'Label';
+  @Input('hint') hint = '';
+  @Input('controlName') controlName = '';
+  @Input('errors') set errors(valueErrors: ValidationErrors) {
+    this.error = valueErrors;
+  }
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  error: ValidationErrors = {
+    required: false,
+    minlength: null
+  }
 }
