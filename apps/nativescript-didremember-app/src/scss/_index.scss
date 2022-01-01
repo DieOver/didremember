@@ -32,7 +32,7 @@
 @import 'nativescript-theme-core/scss/utilities/index';
 
 .Page {
-  background-color: #fafbfd;
+  background-color: $did-color-light;
 }
 
 .fab {
@@ -50,7 +50,34 @@
   font-weight: 900;
 }
 
-// Drawer navigation custom styles
-.nt-drawer__header-image {
-  color: grey;
+GridLayout.menu-content {
+  height: 100%;
+  GridLayout {
+    padding: 8 16;
+    border-top-width: 1;
+    border-top-color: $did-color-light;
+    &[last-child] {
+      border-bottom-width: 1;
+      border-bottom-color: $did-color-light;
+    }
+    Label.menu-version {
+      font-size: 14;
+      color: $did-color-primary-light;
+    }
+    Label.menu-icon {
+      margin-right: 8;
+      color: $did-color-primary-light;
+    }
+    Label.menu-label {
+      color: $did-color-primary-light;
+    }
+    &.selected {
+      Label.menu-icon {
+        color: $did-color-primary;
+      }
+      Label.menu-label {
+        color: $did-color-primary;
+      }
+    }
+  }
 }

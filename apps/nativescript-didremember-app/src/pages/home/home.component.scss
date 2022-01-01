@@ -1,0 +1,12 @@
+@import '../../scss/colors';
+
+Label {
+  font-size: 16;
+  text-align: center;
+  &.no_content_label {
+    color: $did-color-medium;
+  }
+  &.no_content_label_clique {
+    color: $did-color-primary;
+  }
+}

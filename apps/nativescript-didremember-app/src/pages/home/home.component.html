@@ -1,0 +1,24 @@
+<StackLayout class="Page">
+  <did-toolbar title="POSTiT!"></did-toolbar>
+  <GridLayout columns="*" rows="*">
+    <ScrollView [scrollBarIndicatorVisible]="false">
+      <WrapLayout *ngIf="postits.length else notFind" style="padding: 8" col="0" row="0">
+        <ng-container *ngFor="let postit of postits; trackBy:postitTrackBy">
+          <did-card
+            [sizeScreen]="sizeScreen"
+            [count]="postit.count"
+            [name]="postit.name"
+            (tap)="onClickItem(postit)"
+          ></did-card>
+        </ng-container>
+      </WrapLayout>
+    </ScrollView>
+  </GridLayout>
+</StackLayout>
+
+<ng-template #notFind>
+  <GridLayout columns="*, auto, *" rows="*,auto,auto,*" style="padding-top: 16; height: 100%;">
+    <Label class="no_content_label" row="1" col="1" text="Nenhuma Categoria."></Label>
+    <Label class="no_content_label_clique" row="2" col="1" text="Clique aqui para criar uma." (tap)="navigateToRegisterCategory()"></Label>
+  </GridLayout>
+</ng-template>

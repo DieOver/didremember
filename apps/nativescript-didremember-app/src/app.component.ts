@@ -8,6 +8,8 @@ import {
 } from 'nativescript-ui-sidedrawer';
 import { filter } from 'rxjs/operators';
 import { Application } from '@nativescript/core';
+import { PostitService } from './shared/services/postit/postit.service';
+import { Utils } from './shared/utils/util';
 
 @Component({
   selector: 'app-root',
@@ -17,14 +19,28 @@ export class AppComponent implements OnInit {
   private _activatedUrl: string;
   private _sideDrawerTransition: DrawerTransitionBase;
 
+  appVersion = '0.0';
+
   constructor(
     private router: Router,
-    private routerExtensions: RouterExtensions
+    private routerExtensions: RouterExtensions,
+    private postitService: PostitService
   ) {
     // Use the component constructor to inject services.
   }
 
   ngOnInit(): void {
+    Utils.getVersionName()
+      .then((version) => {
+        this.appVersion = `v${version}`;
+      })
+      .catch((error) => {
+        console.error('appVersion', error);
+      });
+
+    // this.postitService.clear();
+    this.postitService.init();
+
     this._activatedUrl = '/home';
     this._sideDrawerTransition = new SlideInOnTopTransition();
 
@@ -44,11 +60,7 @@ export class AppComponent implements OnInit {
   }
 
   onNavItemTap(navItemRoute: string): void {
-    this.routerExtensions.navigate([navItemRoute], {
-      transition: {
-        name: 'fade',
-      },
-    });
+    this.routerExtensions.navigate([navItemRoute]);
 
     const sideDrawer = <RadSideDrawer>Application.getRootView();
     sideDrawer.closeDrawer();

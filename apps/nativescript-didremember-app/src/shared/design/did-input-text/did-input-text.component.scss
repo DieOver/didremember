@@ -1,0 +1,31 @@
+@import '../colors';
+
+:host {
+  --width: 100%;
+  --margin-bottom: 16;
+
+  --label-font-size: 16;
+  --label-color: var(--did-color-primary);
+
+  --text-border-bottom-width: 1;
+  --text-border-bottom-color: var(--did-color-primary-light);
+  --text-color: var(--did-color-medium);
+  --text-placeholder-color: var(--did-color-light);
+}
+
+StackLayout.input-text {
+  width: var(--width);
+  margin-bottom: var(--margin-bottom);
+
+  Label {
+    font-size: var(--label-font-size);
+    color: var(--label-color);
+  }
+
+  TextField {
+    border-bottom-width: var(--text-border-bottom-width);
+    border-bottom-color: var(--text-border-bottom-color);
+    color: var(--text-color);
+    placeholder-color: var(--text-placeholder-color);
+  }
+}

@@ -1,0 +1,18 @@
+@import '../../scss/colors';
+
+StackLayout.content {
+  StackLayout.header {
+    border-bottom-width: 1;
+    border-bottom-color: $did-color-contrast-one;
+    GridLayout {
+      margin: 16;
+    }
+  }
+  StackLayout.categories {
+    margin: 16;
+    Label.title {
+      font-size: 16;
+      color: $did-color-primary;
+    }
+  }
+}

@@ -1,21 +1,21 @@
-import { NgModule } from '@angular/core'
-import { Routes } from '@angular/router'
-import { NativeScriptRouterModule } from '@nativescript/angular'
+import { NgModule } from '@angular/core';
+import { Routes } from '@angular/router';
+import { NativeScriptRouterModule } from '@nativescript/angular';
 
 const routes: Routes = [
-  { path: "", redirectTo: "/itemsMVC", pathMatch: "full" },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
-    path: "itemsMVC",
-    loadChildren: () => import("./pages/itemsMVC/items.module").then((m) => m.ItemsMVCModule),
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then((m) => m.HomeModule),
   },
   {
-    path: "itemsVIPER",
-    loadChildren: () => import("./pages/itemsVIPER/items.module").then((m) => m.ItemsModule),
-  }
-]
+    path: 'category',
+    loadChildren: () => import('./pages/category/category.module').then((m) => m.CategoryModule),
+  },
+];
 
 @NgModule({
   imports: [NativeScriptRouterModule.forRoot(routes)],
   exports: [NativeScriptRouterModule],
 })
-export class AppRoutingModule { }
+export class AppRouting {}

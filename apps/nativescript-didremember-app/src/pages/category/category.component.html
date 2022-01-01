@@ -1,0 +1,23 @@
+<StackLayout class="Page">
+  <did-toolbar [canBack]="true" title="POSTiT!"></did-toolbar>
+  <GridLayout columns="*" rows="auto">
+    <ScrollView [scrollBarIndicatorVisible]="false">
+      <StackLayout class="content">
+        <StackLayout class="header">
+          <ng-container [formGroup]="categoryForm">
+            <GridLayout columns="auto" rows="auto,auto">
+              <did-input-text controlName="name" label="Categoria" col="0" row="0"></did-input-text>
+              <did-button [fn]="save" col="0" row="2" text="Salvar"></did-button>
+            </GridLayout>
+          </ng-container>
+        </StackLayout>
+        <StackLayout class="categories">
+          <Label class="title" text="Categorias"></Label>
+          <ng-container *ngFor="let categoria of categorias">
+            <did-list-item [item]="categoria"></did-list-item>
+          </ng-container>
+        </StackLayout>
+      </StackLayout>
+    </ScrollView>
+  </GridLayout>
+</StackLayout>

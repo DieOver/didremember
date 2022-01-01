@@ -1,23 +1,24 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { Routes } from '@angular/router';
 import {
   NativeScriptCommonModule,
   NativeScriptFormsModule,
 } from '@nativescript/angular';
-import { NativeScriptRouterModule } from '@nativescript/angular';
 import { ComponentsModule } from '../../shared/components/components.module';
-import { ItemsComponent } from '../itemsVIPER/items.component';
-
-const routes: Routes = [{ path: '', component: ItemsComponent }];
+import { CategoryComponent } from './category.component';
+import { DesignModule } from '../../shared/design/design.module';
+import { CategoryRouting } from './category.routing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
-    NativeScriptRouterModule.forChild(routes),
+    CategoryRouting,
     NativeScriptCommonModule,
     NativeScriptFormsModule,
+    ReactiveFormsModule,
     ComponentsModule,
+    DesignModule,
   ],
-  declarations: [ItemsComponent],
+  declarations: [CategoryComponent],
   schemas: [NO_ERRORS_SCHEMA],
 })
-export class ItemsModule {}
+export class CategoryModule {}
