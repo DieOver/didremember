@@ -25,7 +25,5 @@ export class DidInputTextComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log('INIT DID-INPUT-TEXT');
-  }
+  ngOnInit(): void {}
 }

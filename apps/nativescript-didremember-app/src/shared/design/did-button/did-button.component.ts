@@ -8,9 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class DidButtonComponent implements OnInit {
 
   @Input('text') text: string = '';
-  @Input('fn') fn: VoidFunction = () => {
-    console.log('VoidFunction');
-  }
+  @Input('fn') fn: VoidFunction = () => {}
 
   constructor() {}
 

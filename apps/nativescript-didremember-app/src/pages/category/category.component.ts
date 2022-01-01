@@ -27,7 +27,6 @@ export class CategoryComponent implements OnInit {
   ngOnInit(): void {
     this.postits$ = this.postitService.postits.subscribe({
       next: (res) => {
-        console.log('categorys', res);
         this.postits = res;
       },
       error: (error) => {
@@ -38,7 +37,6 @@ export class CategoryComponent implements OnInit {
   }
 
   save = (): void => {
-    console.log(this.categoryForm.value);
     if (!this.categoryForm.valid) return;
     const postit: IPostit = {
       name: this.categoryForm.controls.name.value,

@@ -24,7 +24,5 @@ export class DidListItemComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log('INIT DID-LIST-ITEM');
-  }
+  ngOnInit(): void {}
 }

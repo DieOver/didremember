@@ -21,7 +21,6 @@ export class PostitService implements PostitServiceContract {
 
   save = (postits: IPostit[]): void => {
     ApplicationSettings.setString('postits', JSON.stringify(postits));
-    console.log('save', postits);
     this.postits.next(postits);
   }
 

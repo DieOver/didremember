@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.postits$ = this.postitService.postits.subscribe({
       next: (res) => {
-        console.log('categorys', res);
         this.postits = res;
       },
       error: (error) => {

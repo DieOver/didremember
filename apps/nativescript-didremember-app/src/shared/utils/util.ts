@@ -28,7 +28,7 @@ export const Utils = {
           }
         }
       } catch (exception) {
-        console.log('Error in getVersionName: ' + exception);
+        console.error('Error in getVersionName: ' + exception);
         reject(exception);
       }
     });

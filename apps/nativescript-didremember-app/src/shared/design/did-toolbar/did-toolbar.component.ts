@@ -32,9 +32,7 @@ export class DidToolbarComponent implements OnInit {
   back = () => this.routerExtensions.back();
   clear = () => this.postitService.clear();
 
-  ngOnInit(): void {
-    console.log('INIT DID-TOOLBAR');
-  }
+  ngOnInit(): void {}
 
   onDrawerButtonTap = (): void =>
     (<RadSideDrawer>Application.getRootView()).showDrawer();
