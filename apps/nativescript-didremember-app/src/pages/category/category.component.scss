@@ -16,3 +16,13 @@ StackLayout.content {
     }
   }
 }
+
+GridLayout.not-find {
+  Label {
+    font-size: 16;
+    text-align: center;
+    &.no_content_label {
+      color: $did-color-medium;
+    }
+  }
+}

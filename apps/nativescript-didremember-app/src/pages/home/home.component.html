@@ -17,7 +17,7 @@
 </StackLayout>
 
 <ng-template #notFind>
-  <GridLayout columns="*, auto, *" rows="*,auto,auto,*" style="padding-top: 16; height: 100%;">
+  <GridLayout class="not-find" columns="*, auto, *" rows="*,auto,auto,*" style="padding-top: 16; height: 100%;">
     <Label class="no_content_label" row="1" col="1" text="Nenhuma Categoria."></Label>
     <Label class="no_content_label_clique" row="2" col="1" text="Clique aqui para criar uma." (tap)="navigateToRegisterCategory()"></Label>
   </GridLayout>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { RouterExtensions } from '@nativescript/angular';
+import { Subscription } from 'rxjs';
 import { IPostit } from '../../shared/interfaces/postit.interface';
 import { PostitServiceContract } from '../../shared/services/postit/postit.service.contract';
 import { Utils } from '../../shared/utils/util';
@@ -12,7 +12,8 @@ import { Utils } from '../../shared/utils/util';
 })
 export class CategoryComponent implements OnInit {
   hoje: Date = new Date();
-  categorias: IPostit[] = [];
+  postits: IPostit[] = [];
+  postits$: Subscription;
 
   categoryForm: FormGroup = this.fb.group({
     name: [''],
@@ -20,12 +21,20 @@ export class CategoryComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private routerExtensions: RouterExtensions,
     private postitService: PostitServiceContract
   ) {}
 
   ngOnInit(): void {
-    this.categorias = this.postitService.list();
+    this.postits$ = this.postitService.postits.subscribe({
+      next: (res) => {
+        console.log('categorys', res);
+        this.postits = res;
+      },
+      error: (error) => {
+        console.error('categorys', error);
+        this.postits = [];
+      }
+    });
   }
 
   save = (): void => {
@@ -37,6 +46,5 @@ export class CategoryComponent implements OnInit {
       count: 0,
     };
     this.postitService.add(postit);
-    this.routerExtensions.back();
   };
 }

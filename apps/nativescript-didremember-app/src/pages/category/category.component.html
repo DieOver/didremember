@@ -13,11 +13,19 @@
         </StackLayout>
         <StackLayout class="categories">
           <Label class="title" text="Categorias"></Label>
-          <ng-container *ngFor="let categoria of categorias">
-            <did-list-item [item]="categoria"></did-list-item>
+          <ng-container *ngIf="postits.length else notFind">
+            <ng-container *ngFor="let postit of postits">
+              <did-list-item [item]="postit"></did-list-item>
+            </ng-container>
           </ng-container>
         </StackLayout>
       </StackLayout>
     </ScrollView>
   </GridLayout>
 </StackLayout>
+
+<ng-template #notFind>
+  <GridLayout class="not-find" columns="*, auto, *" rows="*,auto,auto,*" style="padding-top: 16; height: 100%;">
+    <Label class="no_content_label" row="1" col="1" text="Nenhuma Categoria."></Label>
+  </GridLayout>
+</ng-template>
