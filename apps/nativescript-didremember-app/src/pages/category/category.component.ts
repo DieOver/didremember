@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TextField } from '@nativescript/core';
 import { Subscription } from 'rxjs';
 import { IPostit } from '../../shared/interfaces/postit.interface';
 import { PostitServiceContract } from '../../shared/services/postit/postit.service.contract';
@@ -15,10 +16,11 @@ export class CategoryComponent implements OnInit {
   selectPostit: IPostit = {} as IPostit;
   postits: IPostit[] = [];
   postits$: Subscription;
+  tfName: TextField = null;
 
   categoryForm: FormGroup = this.fb.group({
     id: ['', []],
-    name: ['', [Validators.required, Validators.minLength(2)]],
+    name: ['', [Validators.required, Validators.minLength(4)]],
     count: ['', []],
   });
 
@@ -27,7 +29,7 @@ export class CategoryComponent implements OnInit {
     private postitService: PostitServiceContract
   ) {}
 
-  get f() {
+  get fc() {
     return this.categoryForm.controls;
   }
 
@@ -43,6 +45,10 @@ export class CategoryComponent implements OnInit {
     });
   }
 
+  nameProps(ev: TextField) {
+    this.tfName = ev;
+  }
+
   cancel = (): void => {
     this.selectPostit = {} as IPostit;
     this.categoryForm.reset();
@@ -51,7 +57,7 @@ export class CategoryComponent implements OnInit {
   save = (): void => {
     if (!this.categoryForm.valid) return;
     const postit: IPostit = {
-      name: this.categoryForm.controls.name.value,
+      name: this.fc.name.value,
       id: Utils.getUniqueId(2),
       count: 0,
     };
@@ -62,9 +68,9 @@ export class CategoryComponent implements OnInit {
   edit = (): void => {
     if (!this.categoryForm.valid) return;
     const postit: IPostit = {
-      name: this.categoryForm.controls.name.value,
-      id: this.categoryForm.controls.id.value,
-      count: this.categoryForm.controls.count.value,
+      name: this.fc.name.value,
+      id: this.fc.id.value,
+      count: this.fc.count.value,
     };
     this.postitService.edit(postit);
     this.categoryForm.reset();
