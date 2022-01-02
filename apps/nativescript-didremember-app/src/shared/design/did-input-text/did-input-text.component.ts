@@ -15,7 +15,7 @@ import { ControlContainer, FormGroupDirective, ValidationErrors } from '@angular
     <StackLayout class="input-text">
       <Label class="label" [text]="label"></Label>
       <TextField [formControlName]="controlName" [hint]="hint"></TextField>
-      <StackLayout class="errors">
+      <StackLayout class="errors" *ngIf="dirty">
         <Label *ngIf="error?.required" text="Necessário ter um Nome"></Label>
         <Label *ngIf="error?.minlength" text="Necessário ter {{ error?.minlength?.requiredLength }} ou mais caracteres"></Label>
       </StackLayout>
@@ -26,6 +26,7 @@ export class DidInputTextComponent {
   @Input('label') label = 'Label';
   @Input('hint') hint = '';
   @Input('controlName') controlName = '';
+  @Input('dirty') dirty = false;
   @Input('errors') set errors(valueErrors: ValidationErrors) {
     this.error = valueErrors;
   }

@@ -91,5 +91,5 @@ export class CategoryComponent implements OnInit {
     } else {
       this.save();
     }
-  }
+  };
 }

@@ -67,16 +67,21 @@ GridLayout.menu {
       &[version] {
         background-color: $did-color-primary;
         Label.menu-version {
-          font-size: 14;
+          font-size: 12;
           color: $did-color-lightner;
+          &.small {
+            font-size: 10;
+          }
         }
       }
       Label.menu-icon {
+        text-align: center;
         margin-right: 8;
         color: $did-color-primary-light;
       }
       Label.menu-label {
         color: $did-color-primary-light;
+        font-size: 12;
       }
       &.selected {
         Label.menu-icon {
