@@ -6,7 +6,7 @@
   <GridLayout class="menu" tkDrawerContent rows="54,*" columns="*">
     <StackLayout class="menu-header" col="0" row="0"></StackLayout>
     <ScrollView col="0" row="1">
-      <GridLayout rows="auto,auto,*,auto" columns="*" class="menu-content">
+      <GridLayout rows="auto,auto,auto,*,auto" columns="*" class="menu-content">
         <GridLayout
           col="0"
           row="0"
@@ -25,20 +25,20 @@
           (tap)="onNavItemTap('/category')"
         >
           <Label col="0" text="&#xf1ea;" class="menu-icon far"></Label>
-          <Label col="1" text="Categorias" class="menu-label"></Label>
+          <Label col="1" text="CATEGORIAS" class="menu-label"></Label>
         </GridLayout>
         <GridLayout
           last-child
           col="0"
-          row="1"
+          row="2"
           columns="auto, *"
           [class.selected]="isComponentSelected('/questions')"
           (tap)="onNavItemTap('/questions')"
         >
           <Label col="0" text="&#xf1ea;" class="menu-icon far"></Label>
-          <Label col="1" text="Perguntas" class="menu-label"></Label>
+          <Label col="1" text="PERGUNTAS" class="menu-label"></Label>
         </GridLayout>
-        <GridLayout version col="0" row="3" columns="*,auto">
+        <GridLayout version col="0" row="4" columns="*,auto">
           <Label col="1" [text]="appVersion" class="menu-version"></Label>
         </GridLayout>
       </GridLayout>
