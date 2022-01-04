@@ -33,7 +33,7 @@ import { TextField } from '@nativescript/core';
         [hint]="hint"
       ></TextField>
       <StackLayout class="errors" *ngIf="dirty">
-        <Label *ngIf="error?.required" text="Necessário ter um Nome"></Label>
+        <Label *ngIf="error?.required" text="Obrigatório"></Label>
         <Label
           *ngIf="error?.minlength"
           text="Necessário ter {{
@@ -67,5 +67,4 @@ export class DidInputTextComponent implements AfterViewChecked {
     const elTF = this.elRef.nativeElement as TextField;
     this.props.emit(elTF);
   }
-
 }
