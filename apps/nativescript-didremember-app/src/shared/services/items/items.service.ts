@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ItemsServiceContract } from './items.service.contract';
-import { Item } from '../../../shared/interfaces/item.interface';
+import { Item } from '../../interfaces/item.interface';
 import { HttpClient } from '@angular/common/http';
-import { endpoints } from '../../../../src/environments/endpoints';
 import { Utils } from '../../utils/util';
+import { endpoints } from '../../../../src/environments/endpoints';
 
 @Injectable({ providedIn: 'root' })
 export class ItemsService implements ItemsServiceContract {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Item } from '../../interfaces/item.interface';
 import { ItemsServiceContract } from './items.service.contract';
+import { Item } from '../../interfaces/item.interface';
 import { HttpClient } from '@angular/common/http';
 import { Utils } from '../../utils/util';
 
