@@ -45,16 +45,16 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  nameProps(ev: TextField) {
+  nameProps(ev: TextField): void {
     this.tfName = ev;
   }
 
-  cancel = (): void => {
+  cancel(): void {
     this.selectPostit = {} as IPostit;
     this.categoryForm.reset();
   };
 
-  save = (): void => {
+  save(): void {
     if (!this.categoryForm.valid) return;
     const postit: IPostit = {
       name: this.fc.name.value,
@@ -65,7 +65,7 @@ export class CategoryComponent implements OnInit {
     this.categoryForm.reset();
   };
 
-  edit = (): void => {
+  edit(): void {
     if (!this.categoryForm.valid) return;
     const postit: IPostit = {
       name: this.fc.name.value,
@@ -77,7 +77,7 @@ export class CategoryComponent implements OnInit {
     this.selectPostit = {} as IPostit;
   };
 
-  selectItem(ev: IPostit) {
+  selectItem(ev: IPostit): void {
     this.selectPostit = ev;
     this.categoryForm.setValue({
       id: ev.id,
@@ -86,12 +86,12 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  deleteItem(ev: IPostit) {
+  deleteItem(ev: IPostit): void {
     this.selectPostit = {} as IPostit;
     this.postitService.remove(ev.id);
   }
 
-  submit = () => {
+  submit(): void {
     if (this.selectPostit?.id) {
       this.edit();
     } else {

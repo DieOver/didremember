@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApplicationSettings } from '@nativescript/core';
+import { environment } from '../../../environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { IPostit } from '../../interfaces/postit.interface';
 import { PostitServiceContract } from './postit.service.contract';
@@ -10,18 +11,18 @@ export class PostitService implements PostitServiceContract {
 
   init(): void {
     const postits: IPostit[] = this.list();
-    ApplicationSettings.setString('postits', JSON.stringify(postits));
+    this.save(postits);
     this.postits.next(this.list());
   }
 
   clear = (): void => this.save([]);
 
   list(): IPostit[] {
-    return JSON.parse(ApplicationSettings.getString('postits', '[]')) as IPostit[];
+    return JSON.parse(ApplicationSettings.getString(environment.name_postit_shared, '[]')) as IPostit[];
   }
 
   save(postits: IPostit[]): void {
-    ApplicationSettings.setString('postits', JSON.stringify(postits));
+    ApplicationSettings.setString(environment.name_postit_shared, JSON.stringify(postits));
     this.postits.next(postits);
   }
 
