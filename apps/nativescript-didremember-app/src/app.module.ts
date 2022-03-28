@@ -13,6 +13,7 @@ import { ItemsService } from './shared/services/items/items.service';
 import { PostitServiceContract } from './shared/services/postit/postit.service.contract';
 import { PostitService } from './shared/services/postit/postit.service';
 import { AppRouting } from './app.routing';
+import { ConfirmComponent } from './modals/confirm/confirm.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -22,7 +23,7 @@ import { AppRouting } from './app.routing';
     NativeScriptHttpClientModule,
     NativeScriptUISideDrawerModule,
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, ConfirmComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

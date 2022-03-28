@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TextField } from '@nativescript/core';
+import { ModalDialogOptions, ModalDialogService } from '@nativescript/angular';
+import { confirm, ConfirmOptions, TextField } from '@nativescript/core';
 import { Subscription } from 'rxjs';
 import { IPostit } from '../../shared/interfaces/postit.interface';
 import { PostitServiceContract } from '../../shared/services/postit/postit.service.contract';
 import { Utils } from '../../shared/utils/util';
+import { ConfirmComponent } from '../../modals/confirm/confirm.component';
 
 @Component({
   selector: 'ns-category',
@@ -26,8 +28,46 @@ export class CategoryComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private postitService: PostitServiceContract
+    private postitService: PostitServiceContract,
+    private modal: ModalDialogService
   ) {}
+
+  deleteItem(ev: IPostit): void {
+    // this.selectPostit = {} as IPostit;
+    // this.postitService.remove(ev.id);
+    const opts: ConfirmOptions = {
+      message: 'Deseja realmente deletar?',
+      title: 'Atenção',
+      okButtonText: 'Sim!',
+      cancelButtonText: 'Não!',
+      cancelable: false
+    };
+    confirm(opts).then((res) => {
+      console.log('res', res);
+      if (res) {
+        this.selectPostit = {} as IPostit;
+        this.postitService.remove(ev.id);
+        this.categoryForm.setValue({
+          id: null,
+          name: '',
+          count: 0
+        });
+      }
+    });
+  }
+
+  abrirModal(): void {
+    const options: ModalDialogOptions = {
+      context: {},
+      fullscreen: true,
+      ios: {
+        presentationStyle: UIModalPresentationStyle.OverFullScreen,
+      }
+    };
+    this.modal.showModal(ConfirmComponent, options).then((res) => {
+      console.log('modal', res);
+    });
+  }
 
   get fc() {
     return this.categoryForm.controls;
@@ -49,7 +89,7 @@ export class CategoryComponent implements OnInit {
     this.tfName = ev;
   }
 
-  cancel(): void {
+  cancel = (): void => {
     this.selectPostit = {} as IPostit;
     this.categoryForm.reset();
   };
@@ -86,12 +126,7 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  deleteItem(ev: IPostit): void {
-    this.selectPostit = {} as IPostit;
-    this.postitService.remove(ev.id);
-  }
-
-  submit(): void {
+  submit = (): void => {
     if (this.selectPostit?.id) {
       this.edit();
     } else {
