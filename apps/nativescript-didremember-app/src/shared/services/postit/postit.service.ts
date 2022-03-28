@@ -14,12 +14,13 @@ export class PostitService implements PostitServiceContract {
     this.postits.next(this.list());
   }
 
-  list = (): IPostit[] =>
-    JSON.parse(ApplicationSettings.getString('postits', '[]')) as IPostit[];
-
   clear = (): void => this.save([]);
 
-  save = (postits: IPostit[]): void => {
+  list(): IPostit[] {
+    return JSON.parse(ApplicationSettings.getString('postits', '[]')) as IPostit[];
+  }
+
+  save(postits: IPostit[]): void {
     ApplicationSettings.setString('postits', JSON.stringify(postits));
     this.postits.next(postits);
   }

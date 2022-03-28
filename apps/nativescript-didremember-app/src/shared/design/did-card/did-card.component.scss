@@ -1,6 +1,7 @@
 @import '../../../scss/colors';
 
 :host {
+  --marker-color: #FFFFFF;
   --background-color: #c3f44d;
   --padding: 16;
   --margin: 8;
@@ -12,6 +13,7 @@
 
 StackLayout.card {
   background-color: var(--background-color);
+  background: linear-gradient(135deg, var(--marker-color) 0%, var(--background-color) 1%);
   padding: var(--padding);
   margin: var(--margin);
   text-align: var(--text-align);

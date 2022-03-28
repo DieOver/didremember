@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./did-card.component.scss'],
   template: `
     <StackLayout class="card" [style.width]="sizeScreen" [style.height]="sizeScreen">
+      <Image src=""></Image>
       <Label [text]="count"></Label>
       <Label [text]="name"></Label>
     </StackLayout>
