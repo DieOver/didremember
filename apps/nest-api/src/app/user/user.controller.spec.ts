@@ -12,13 +12,4 @@ describe('UserController', () => {
       providers: [UserService],
     }).compile();
   });
-
-  describe('getData', () => {
-    it('should return "Welcome to nest-api!"', () => {
-      const userController = user.get<UserController>(UserController);
-      expect(userController.getData()).toEqual({
-        message: 'Welcome to nest-api!',
-      });
-    });
-  });
 });

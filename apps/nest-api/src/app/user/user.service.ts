@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { ERoles, IUser } from './interfaces/user.interface';
+import { ERoles, IUser } from '../../interfaces/user.interface';
 @Injectable()
 export class UserService {
 

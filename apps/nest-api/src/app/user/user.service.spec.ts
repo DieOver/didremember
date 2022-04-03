@@ -12,10 +12,4 @@ describe('UserService', () => {
 
     service = user.get<UserService>(UserService);
   });
-
-  describe('getData', () => {
-    it('should return "Welcome to nest-api!"', () => {
-      expect(service.users()).toEqual({ message: 'Welcome to nest-api!' });
-    });
-  });
 });

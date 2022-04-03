@@ -1,6 +1,7 @@
 
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { LoginDTOReq, LoginDTORes } from '../../dto';
 import { UserService } from '../user/user.service';
 
 @Injectable()
@@ -10,11 +11,11 @@ export class AuthService {
     private jwtService: JwtService
   ) {}
 
-  async login(username: string, pass: string): Promise<{ access_token: string; }> {
+  async login(login: LoginDTOReq): Promise<LoginDTORes> {
     try {
-      const user = await this.userService.findByUsername(username);
+      const user = await this.userService.findByUsername(login.username);
       if (!user) throw 'user_not_found';
-      if (user.password != pass) throw 'wrong_password';
+      if (user.password != login.password) throw 'wrong_password';
       const { password, ...result } = user;
       return {
         access_token: this.jwtService.sign(result),

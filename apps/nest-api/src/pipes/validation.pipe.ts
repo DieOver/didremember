@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-types */
 
 import {
@@ -18,14 +17,14 @@ export class ValidationPipe implements PipeTransform<any> {
     }
     const object = plainToClass(metatype, value);
     const errors = await validate(object);
-    if (errors.length > 0) {
+    if (errors.length) {
       throw new BadRequestException('Falha na validação dos dados do payload.');
     }
     return value;
   }
 
   private toValidate(metatype: Function): boolean {
-    const types: Function[] = [String, Boolean, Number, Array, Object];
+    const types: Function[] = [String, Boolean, Number, Array, Object, Date];
     return !types.includes(metatype);
   }
 }
