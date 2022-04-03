@@ -47,11 +47,7 @@ export class CategoryComponent implements OnInit {
       if (res) {
         this.selectPostit = {} as IPostit;
         this.postitService.remove(ev.id);
-        this.categoryForm.setValue({
-          id: null,
-          name: '',
-          count: 0
-        });
+        this.categoryForm.reset();
       }
     });
   }
