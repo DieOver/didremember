@@ -57,7 +57,7 @@ GridLayout.menu {
   GridLayout.menu-content {
     height: 100%;
     GridLayout {
-      padding: 8 16;
+      padding: 8;
       border-top-width: 1;
       border-top-color: $did-color-light;
       &[last-child] {
