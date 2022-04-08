@@ -22,7 +22,6 @@ export class DidToolbarComponent {
 
   @Input('canBack') canBack = false;
   @Input('title') title = "";
-  @Input('fn') fn = () => console.log('VoidFunction');
 
   constructor(
     private postitService: PostitServiceContract,

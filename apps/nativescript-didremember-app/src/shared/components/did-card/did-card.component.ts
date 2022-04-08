@@ -18,7 +18,7 @@ export class DidCardComponent {
   @Input('name') name = "";
   @Input('sizeScreen') sizeScreen = 0;
 
-  @Output() tap = new EventEmitter();
+  @Output('tap') tap = new EventEmitter();
 
   emitTap() {
     this.tap.emit();

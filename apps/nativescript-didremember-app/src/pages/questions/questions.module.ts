@@ -5,7 +5,6 @@ import {
 } from '@nativescript/angular';
 import { ComponentsModule } from '../../shared/components/components.module';
 import { QuestionsComponent } from './questions.component';
-import { DesignModule } from '../../shared/design/design.module';
 import { QuestionsRouting } from './questions.routing';
 
 @NgModule({
@@ -14,7 +13,6 @@ import { QuestionsRouting } from './questions.routing';
     NativeScriptCommonModule,
     NativeScriptFormsModule,
     ComponentsModule,
-    DesignModule,
   ],
   declarations: [QuestionsComponent],
   schemas: [NO_ERRORS_SCHEMA],

@@ -5,7 +5,6 @@ import {
 } from '@nativescript/angular';
 import { ComponentsModule } from '../../shared/components/components.module';
 import { HomeComponent } from './home.component';
-import { DesignModule } from '../../shared/design/design.module';
 import { HomeRouting } from './home.routing';
 
 @NgModule({
@@ -14,7 +13,6 @@ import { HomeRouting } from './home.routing';
     NativeScriptCommonModule,
     NativeScriptFormsModule,
     ComponentsModule,
-    DesignModule,
   ],
   declarations: [HomeComponent],
   schemas: [NO_ERRORS_SCHEMA],

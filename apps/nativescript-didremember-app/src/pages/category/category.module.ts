@@ -5,7 +5,6 @@ import {
 } from '@nativescript/angular';
 import { ComponentsModule } from '../../shared/components/components.module';
 import { CategoryComponent } from './category.component';
-import { DesignModule } from '../../shared/design/design.module';
 import { CategoryRouting } from './category.routing';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -16,7 +15,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     NativeScriptFormsModule,
     ReactiveFormsModule,
     ComponentsModule,
-    DesignModule,
   ],
   declarations: [CategoryComponent],
   schemas: [NO_ERRORS_SCHEMA],

@@ -3,16 +3,29 @@ import {
   NativeScriptCommonModule,
   NativeScriptFormsModule,
 } from '@nativescript/angular';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DidCardComponent } from './did-card/did-card.component';
 import { DidToolbarComponent } from './did-toolbar/did-toolbar.component';
+import { DidButtonComponent } from './did-button/did-button.component';
+import { DidInputTextComponent } from './did-input-text/did-input-text.component';
+import { DidListItemComponent } from './did-list-item/did-list-item.component';
 
 const ED = [
-  DidToolbarComponent
+  DidToolbarComponent,
+  DidCardComponent,
+  DidButtonComponent,
+  DidInputTextComponent,
+  DidListItemComponent,
 ];
 
 @NgModule({
+  imports: [
+    NativeScriptCommonModule,
+    ReactiveFormsModule,
+    NativeScriptFormsModule,
+  ],
   exports: [...ED],
   declarations: [...ED],
-  imports: [NativeScriptCommonModule, NativeScriptFormsModule],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],
 })
