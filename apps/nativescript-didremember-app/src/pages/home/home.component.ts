@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Screen } from '@nativescript/core';
 import { IPostit } from '../../shared/interfaces/postit.interface';
 import { RouterExtensions } from '@nativescript/angular';
@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   widthDIPs = Screen.mainScreen.widthDIPs;
   sizeScreen = 0;
   postits: IPostit[] = [];
-  postit: IPostit = {} as IPostit;
   postits$: Subscription;
 
   constructor(
@@ -40,10 +39,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.postits$.unsubscribe();
   }
 
-  onClickItem(postit: IPostit): void {
-    this.postit = this.postitService.find(postit.id);
-    if (this.postit.id) {
-      this.navigateToDetail(postit);
+  onClickItem = (postit: IPostit): void => {
+    const findedPostit = this.postitService.find(postit.id);
+    if (findedPostit.id) {
+      this.navigateToDetail(findedPostit);
     }
   }
 
@@ -52,7 +51,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   navigateToDetail(item: IPostit): void {
-    this.router.navigateByUrl(`/category/${item.id}`);
+    this.router.navigateByUrl(`/questions/${item.id}`);
   }
 
   postitTrackBy = (postit: IPostit): string => postit.id;

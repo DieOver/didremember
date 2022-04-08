@@ -11,12 +11,10 @@ export class ItemsService implements ItemsServiceContract {
   constructor(private http: HttpClient) {}
 
   items(): Observable<Item[]> {
-    return this.http.get<Item[]>(Utils.replaceUrl(`${endpoints.items.todos}`));
+    return this.http.get<Item[]>(Utils.replaceUrl(endpoints.items.todos));
   }
 
   item(id: number): Observable<Item> {
-    return this.http.get<Item>(
-      Utils.replaceUrl(`${endpoints.items.todo}`, { id })
-    );
+    return this.http.get<Item>(Utils.replaceUrl(endpoints.items.todo, { id }));
   }
 }

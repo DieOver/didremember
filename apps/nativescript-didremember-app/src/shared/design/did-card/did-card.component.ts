@@ -1,11 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   moduleId: module.id,
   selector: 'did-card',
   styleUrls: ['./did-card.component.scss'],
   template: `
-    <StackLayout class="card" [style.width]="sizeScreen" [style.height]="sizeScreen">
+    <StackLayout (tap)="emitTap()" class="card" [style.width]="sizeScreen" [style.height]="sizeScreen">
       <Image src=""></Image>
       <Label [text]="count"></Label>
       <Label [text]="name"></Label>
@@ -18,4 +18,9 @@ export class DidCardComponent {
   @Input('name') name = "";
   @Input('sizeScreen') sizeScreen = 0;
 
+  @Output() tap = new EventEmitter();
+
+  emitTap() {
+    this.tap.emit();
+  }
 }

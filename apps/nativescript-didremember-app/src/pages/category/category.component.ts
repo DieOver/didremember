@@ -32,6 +32,18 @@ export class CategoryComponent implements OnInit {
     private modal: ModalDialogService
   ) {}
 
+  ngOnInit(): void {
+    this.postits$ = this.postitService.postits.subscribe({
+      next: (res) => {
+        this.postits = res;
+      },
+      error: (error) => {
+        console.error('categorys', error);
+        this.postits = [];
+      },
+    });
+  }
+
   deleteItem(ev: IPostit): void {
     // this.selectPostit = {} as IPostit;
     // this.postitService.remove(ev.id);
@@ -67,18 +79,6 @@ export class CategoryComponent implements OnInit {
 
   get fc() {
     return this.categoryForm.controls;
-  }
-
-  ngOnInit(): void {
-    this.postits$ = this.postitService.postits.subscribe({
-      next: (res) => {
-        this.postits = res;
-      },
-      error: (error) => {
-        console.error('categorys', error);
-        this.postits = [];
-      },
-    });
   }
 
   nameProps(ev: TextField): void {

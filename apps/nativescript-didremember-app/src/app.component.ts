@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { RouterExtensions } from '@nativescript/angular';
+import { NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { NavigationOptions, RouterExtensions } from '@nativescript/angular';
 import {
   DrawerTransitionBase,
   RadSideDrawer,
@@ -10,48 +10,52 @@ import { filter } from 'rxjs/operators';
 import { Application } from '@nativescript/core';
 import { Utils } from './shared/utils/util';
 import { PostitServiceContract } from './shared/services/postit/postit.service.contract';
+import { IStatusBar } from './shared/interfaces/statusbar.interface';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  private _activatedUrl: string;
-  private _sideDrawerTransition: DrawerTransitionBase;
 
-  appVersion = '0.0';
+  public appVersion = '0.0';
+  public sideDrawerTransition: DrawerTransitionBase = new SlideInOnTopTransition();
+
+  private _activatedUrl: string;
 
   constructor(
     private router: Router,
     private routerExtensions: RouterExtensions,
     private postitService: PostitServiceContract
-  ) {
-    // Use the component constructor to inject services.
-  }
+  ) {}
 
-  ngOnInit(): void {
-    Utils.getVersionName()
-      .then((version) => {
-        this.appVersion = `v${version}`;
-      })
-      .catch((error) => {
-        console.error('appVersion', error);
-      });
-
-    this.postitService.init();
-
+  async ngOnInit(): Promise<void> {
     this._activatedUrl = '/home';
-    this._sideDrawerTransition = new SlideInOnTopTransition();
-
-    this.router.events
-      .pipe(filter((event: any) => event instanceof NavigationEnd))
-      .subscribe(
-        (event: NavigationEnd) => (this._activatedUrl = event.urlAfterRedirects)
-      );
+    this.appVersion = `v${(await Utils.getVersionName())}`;
+    this.postitService.init();
+    this.router.events.pipe(
+      filter((event: RouterEvent) => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this._activatedUrl = event.urlAfterRedirects;
+      this.changeStatusBarText(event.urlAfterRedirects);
+    });
   }
 
-  get sideDrawerTransition(): DrawerTransitionBase {
-    return this._sideDrawerTransition;
+  changeStatusBarText(url: string): void {
+    console.log('changeStatusBarText', url);
+    const param: IStatusBar = { type: 'light', color: '' };
+    switch (url) {
+      case String(url.match(/\/home$/gi)):
+        param.type = 'light'; break;
+
+      case String(url.match(/\/category$/gi)):
+      case String(url.match(/\/questions\/(\w{4}-\w{4})$/gi)):
+        param.type = 'dark'; break;
+
+      default:
+        param.type = 'light'; break;
+    }
+    Utils.setStatusBarColor(param);
   }
 
   isComponentSelected(url: string): boolean {
@@ -59,7 +63,8 @@ export class AppComponent implements OnInit {
   }
 
   onNavItemTap(navItemRoute: string): void {
-    this.routerExtensions.navigate([navItemRoute]);
+    const navigationOptions: NavigationOptions = {};
+    this.routerExtensions.navigateByUrl(navItemRoute, navigationOptions);
 
     const sideDrawer = <RadSideDrawer>Application.getRootView();
     sideDrawer.closeDrawer();

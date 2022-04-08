@@ -1,4 +1,5 @@
 import { Application, Color, Device, isIOS } from '@nativescript/core';
+import { IStatusBar } from '../interfaces/statusbar.interface';
 
 export const Utils = {
   getVersionName(): Promise<string> {
@@ -12,14 +13,8 @@ export const Utils = {
           );
         } else {
           const _resolve = () => {
-            const packageManager =
-              Application.android.context.getPackageManager();
-            resolve(
-              packageManager.getPackageInfo(
-                Application.android.context.getPackageName(),
-                0
-              ).versionName
-            );
+            const packageManager = Application.android.context.getPackageManager();
+            resolve(packageManager.getPackageInfo(Application.android.context.getPackageName(), 0).versionName);
           };
           if (Application.android.context) {
             _resolve();
@@ -29,7 +24,7 @@ export const Utils = {
         }
       } catch (exception) {
         console.error('Error in getVersionName: ' + exception);
-        reject(exception);
+        reject('0.0');
       }
     });
   },
@@ -42,9 +37,7 @@ export const Utils = {
   getUniqueId(parts: number): string {
     const stringArr = [];
     for (let i = 0; i < parts; i++) {
-      const S4 = (((1 + Math.random()) * 0x10000) | 0)
-        .toString(16)
-        .substring(1);
+      const S4 = (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
       stringArr.push(S4);
     }
     return stringArr.join('-');
@@ -56,14 +49,11 @@ export const Utils = {
     return url.replace(regex, (m, $1) => data[$1] || m);
   },
 
-  setStatusBarColor(
-    color: 'light' | 'dark',
-    tintColor?: string /* android only */
-  ) {
+  setStatusBarColor(param: IStatusBar) {
     if (isIOS) {
       // ios status-bar background color is set via the .action-bar class
       UIApplication.sharedApplication.setStatusBarStyleAnimated(
-        color === 'light'
+        param.type === 'light'
           ? UIStatusBarStyle.LightContent
           : UIStatusBarStyle.DarkContent,
         false
@@ -87,7 +77,7 @@ export const Utils = {
             android.view.WindowManager.LayoutParams
               .FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
           );
-        activity.getWindow().setStatusBarColor(new Color(tintColor).android);
+        activity.getWindow().setStatusBarColor(new Color(param.color).android);
         if (sdkVersion >= 23) {
           // api level 23+ can programmatically change the text color of the status bar
           // see here: https://developer.android.com/reference/android/view/View#SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
