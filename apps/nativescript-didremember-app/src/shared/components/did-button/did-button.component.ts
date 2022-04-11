@@ -1,13 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'did-button',
   styleUrls: ['./did-button.component.scss'],
-  template: `<Button (tap)="fn()" [text]="text"></Button>`,
+  template: `<Button (tap)="emitTap()" [text]="text"></Button>`,
 })
 export class DidButtonComponent {
 
   @Input('text') text = '';
-  @Input('fn') fn = () => console.log('VoidFunction');
 
+  @Output('tap') tap = new EventEmitter();
+
+  emitTap() {
+    this.tap.emit();
+  }
 }

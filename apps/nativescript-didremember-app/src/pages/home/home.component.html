@@ -1,8 +1,24 @@
 <StackLayout class="Page">
   <did-toolbar title="POSTiT!"></did-toolbar>
-  <GridLayout columns="*" rows="*">
+  <GridLayout columns="*" rows="*,auto">
     <ScrollView [scrollBarIndicatorVisible]="false">
-      <WrapLayout *ngIf="postits.length else notFind" style="padding: 8" col="0" row="0">
+
+    <!-- <WebView
+      col="0"
+      row="0"
+      #myWebView
+      src=""
+      *ngIf="showWebView"
+      (loadStarted)="onLoadStarted($event)"
+      (loadFinished)="onLoadFinished($event)"
+    ></WebView>
+
+    <FlexboxLayout col="0" row="1">
+      <did-button (tap)="toogleWebView()" text="Restart WebView"></did-button>
+      <did-button (tap)="callJsFunction()" text="call JSFunction"></did-button>
+      <did-button (tap)="makeLogin()" text="make Login"></did-button>
+    </FlexboxLayout> -->
+    <WrapLayout *ngIf="postits.length else notFind" style="padding: 8" col="0" row="0">
         <ng-container *ngFor="let postit of postits; trackBy:postitTrackBy">
           <did-card
             [sizeScreen]="sizeScreen"
@@ -17,8 +33,24 @@
 </StackLayout>
 
 <ng-template #notFind>
-  <GridLayout class="not-find" columns="*, auto, *" rows="*,auto,auto,*" style="padding-top: 16; height: 100%;">
-    <Label class="no_content_label" row="1" col="1" text="Nenhuma Categoria."></Label>
-    <Label class="no_content_label_clique" row="2" col="1" text="Clique aqui para criar uma." (tap)="navigateToRegisterCategory()"></Label>
+  <GridLayout
+    class="not-find"
+    columns="*, auto, *"
+    rows="*,auto,auto,*"
+    style="padding-top: 16; height: 100%"
+  >
+    <Label
+      class="no_content_label"
+      row="1"
+      col="1"
+      text="Nenhuma Categoria."
+    ></Label>
+    <Label
+      class="no_content_label_clique"
+      row="2"
+      col="1"
+      text="Clique aqui para criar uma."
+      (tap)="navigateToRegisterCategory()"
+    ></Label>
   </GridLayout>
 </ng-template>

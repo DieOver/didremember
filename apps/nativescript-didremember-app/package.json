@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "@nativescript/core": "*",
-    "nativescript-ui-sidedrawer": "^10.0.2"
+    "nativescript-ui-sidedrawer": "^10.0.2",
+    "nativescript-webview-interface": "^1.4.4"
   },
   "devDependencies": {
     "@nativescript/android": "~8.1.1",

@@ -31,7 +31,7 @@
 // since {N} core theme utilities are additive to any above class, these should always be last
 @import 'nativescript-theme-core/scss/utilities/index';
 
-.Page {
+StackLayout.Page {
   background-color: $did-color-light;
 }
 
@@ -51,6 +51,7 @@
 }
 
 GridLayout.menu {
+  background-color: $did-color-lightner;
   StackLayout.menu-header {
     background-color: $did-color-primary;
   }

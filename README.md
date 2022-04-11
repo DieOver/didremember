@@ -92,3 +92,46 @@ Nx Cloud pairs with Nx in order to enable you to build and test code more rapidl
 Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
 
 Visit [Nx Cloud](https://nx.app/) to learn more.
+
+## Install nativescript-webview-interface
+
+```ts
+webviewSrc = `file:///${knownFolders.currentApp().path}/assets/web/index.html`;
+
+onLoadStarted(args: LoadEventData) {
+  const webView = args.object as WebView;
+  if (!args.error) {
+    this.configureWebView();
+  } else {
+    console.log(`EventName: ${args.eventName}`);
+    console.log(`Error: ${args.error}`);
+  }
+}
+
+configureWebView() {
+  setTimeout(() => {
+    const settings = this.myWebView.nativeElement.android.getSettings();
+    settings.setAllowFileAccess(true);
+    settings.setAllowContentAccess(true);
+    settings.setJavaScriptEnabled(true);
+    settings.setDomStorageEnabled(true);
+    settings.setDatabaseEnabled(true);
+    settings.setLoadWithOverviewMode(true);
+    settings.setSupportZoom(true);
+    settings.setBuiltInZoomControls(false);
+    settings.setDisplayZoomControls(true);
+    settings.setJavaScriptCanOpenWindowsAutomatically(true);
+    settings.setPluginsEnabled(true);
+    settings.setAllowFileAccessFromFileURLs(true);
+    settings.setAllowUniversalAccessFromFileURLs(true);
+    if (android.os.Build.VERSION.SDK_INT >= 21) {
+        settings.setMixedContentMode(android.webkit.WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
+    }
+    this.oWebViewInterface = new WebViewInterface(
+      this.myWebView.nativeElement,
+      this.webviewSrc
+    );
+    this.myWebView.nativeElement.src = this.webviewSrc;
+  }, 1000);
+}
+```

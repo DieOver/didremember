@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="pt_BR">
+  <head>
+    <!-- This viewport meta tag should disable zomming, but iOS 10 until 12 ignores this tag in favor of user accessabitlity -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <meta http-equiv="Content-Language" content="pt_BR" />
+    <title>Power BI - Embed</title>
+
+    <style type="text/css">
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      #embedContainer {
+        width: 100%;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+      iframe {
+        display: block;
+        border: none;
+        width: 100% !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="embedContainer"></div>
+
+    <script type="text/javascript" src="./nativescript-webview-interface.js"></script>
+    <script type="text/javascript" src="./jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="./powerbi.min.js"></script>
+    <script type="text/javascript">
+      // var oWebViewInterface = window.nsWebViewInterface;
+      // oWebViewInterface.on('anyEvent', function(eventData){});
+      // oWebViewInterface.emit('anyEvent', 'asrasrasr');
+
+      var report;
+
+      var models = window['powerbi-client'].models;
+
+      var config = {
+        type: 'report',
+        tokenType: models.TokenType.Embed,
+        accessToken: null,
+        filters: null,
+        embedUrl: 'https://app.powerbi.com/reportEmbed',
+        id: '42040369-aa68-4a74-a907-7d48d0a1e3b3',
+        pageName: 'ReportSection',
+        permissions: models.Permissions.Read,
+        viewMode: models.ViewMode.View,
+        pageView: 'fitToWidth',
+        settings: {
+          filterPaneEnabled: false,
+          navContentPaneEnabled: false,
+          background: models.BackgroundType.Transparent,
+          localeSettings: {
+            language: 'pt',
+            formatLocale: 'pt',
+          },
+        },
+      };
+
+      var filtroExecutivo = new models.BasicFilter(
+        { table: 'Executivos', column: 'LoginExecutivo' },
+        'All',
+        ['']
+      );
+
+      var filtroCorretor = new models.BasicFilter(
+        { table: 'Corretores', column: 'CodCorretor' },
+        'All',
+        ['']
+      );
+
+      var filtroCarteira = new models.BasicFilter(
+        { table: 'Agrupamentos', column: 'CodCarteira' },
+        'All',
+        ['']
+      );
+
+      var filtroPeriodo = new models.BasicFilter(
+        { table: 'Periodos', column: 'DescPeriodo' },
+        'In',
+        ['Atual']
+      );
+
+      var embedContainer;
+
+      function blabla(arg) {
+        $('#embedContainer').text(arg);
+      }
+
+      function loadPowerBI(
+        token,
+        pageName,
+        executive,
+        broker,
+        product,
+        period
+      ) {
+        config.accessToken = token;
+
+        config.pageName = pageName;
+
+        updateFilters(executive, broker, product, period);
+        config.filters = [
+          filtroExecutivo,
+          filtroCorretor,
+          filtroCarteira,
+          filtroPeriodo,
+        ];
+
+        if (report === undefined) {
+          console.log('Creating powerbi for the first time');
+          createPowerBI();
+        } else {
+          console.log('REcreating powerbi');
+          unsubscribeForEventsInReport(report);
+          powerbi.reset(embedContainer);
+          createPowerBI();
+        }
+      }
+
+      function changeSection(section) {
+        report.page(section).setActive();
+      }
+
+      function changeToken(token) {
+        report.setAccessToken(token);
+      }
+
+      function refreshPowerBI() {
+        report.refresh();
+      }
+
+      function createPowerBI() {
+        report = powerbi.embed(embedContainer, config);
+        subscribeForEventsInReport(report);
+      }
+
+      function subscribeForEventsInReport(report) {
+        report.on('error', function (event) {
+          console.log('ERROR: ', event);
+          if (event.detail.message == 'TokenExpired') {
+            window.top.location.href = 'https://www.hdi.com.br/?error';
+          }
+        });
+
+        report.on('loaded', function (event) {
+          console.log('LOADED', event);
+          // window.top.location.href = 'https://www.hdi.com.br?loaded';
+        });
+      }
+
+      function unsubscribeForEventsInReport(report) {
+        report.off('error');
+        report.off('loaded');
+      }
+
+      $(document).ready(function () {
+        embedContainer = $('#embedContainer')[0];
+        // window.top.location.href = 'https://www.hdi.com.br?readyToLoad';
+      });
+
+      function updateFilters(executivo, corretor, carteira, periodo) {
+        filtroExecutivo.operator = executivo == '' ? 'All' : 'In';
+        filtroExecutivo.values = [executivo];
+
+        filtroCorretor.operator = corretor == '' ? 'All' : 'In';
+        filtroCorretor.values = [parseInt(corretor)];
+
+        filtroCarteira.operator = carteira == '' ? 'All' : 'In';
+        filtroCarteira.values = [parseInt(carteira)];
+
+        filtroPeriodo.values = [periodo];
+      }
+
+      function AplicarFiltros(executivo, corretor, carteira, periodo) {
+        updateFilters(executivo, corretor, carteira, periodo);
+
+        report.setFilters([
+          filtroExecutivo,
+          filtroCorretor,
+          filtroCarteira,
+          filtroPeriodo,
+        ]);
+      }
+    </script>
+  </body>
+</html>
