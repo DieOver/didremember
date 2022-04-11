@@ -1,9 +1,9 @@
 <StackLayout class="Page">
   <did-toolbar title="POSTiT!"></did-toolbar>
   <GridLayout columns="*" rows="*,auto">
-    <ScrollView [scrollBarIndicatorVisible]="false">
+    <!-- <ScrollView [scrollBarIndicatorVisible]="false"> -->
 
-    <!-- <WebView
+    <WebView
       col="0"
       row="0"
       #myWebView
@@ -17,8 +17,8 @@
       <did-button (tap)="toogleWebView()" text="Restart WebView"></did-button>
       <did-button (tap)="callJsFunction()" text="call JSFunction"></did-button>
       <did-button (tap)="makeLogin()" text="make Login"></did-button>
-    </FlexboxLayout> -->
-    <WrapLayout *ngIf="postits.length else notFind" style="padding: 8" col="0" row="0">
+    </FlexboxLayout>
+    <!-- <WrapLayout *ngIf="postits.length else notFind" style="padding: 8" col="0" row="0">
         <ng-container *ngFor="let postit of postits; trackBy:postitTrackBy">
           <did-card
             [sizeScreen]="sizeScreen"
@@ -27,8 +27,8 @@
             (tap)="onClickItem(postit)"
           ></did-card>
         </ng-container>
-      </WrapLayout>
-    </ScrollView>
+      </WrapLayout> -->
+    <!-- </ScrollView> -->
   </GridLayout>
 </StackLayout>
 

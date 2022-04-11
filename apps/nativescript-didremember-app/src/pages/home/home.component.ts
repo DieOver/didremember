@@ -13,6 +13,7 @@ import { PostitServiceContract } from '../../shared/services/postit/postit.servi
 import { WebViewInterface } from 'nativescript-webview-interface';
 import { LoginService } from '../../shared/services/login/login.service';
 import { knownFolders } from '@nativescript/core/file-system';
+import { isAndroid } from '@nativescript/core';
 
 @Component({
   selector: 'ns-home',
@@ -54,22 +55,24 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   configureWebView() {
     setTimeout(() => {
-      const settings = this.myWebView.nativeElement.android.getSettings();
-      settings.setAllowFileAccess(true);
-      settings.setAllowContentAccess(true);
-      settings.setJavaScriptEnabled(true);
-      settings.setDomStorageEnabled(true);
-      settings.setDatabaseEnabled(true);
-      settings.setLoadWithOverviewMode(true);
-      settings.setSupportZoom(true);
-      settings.setBuiltInZoomControls(false);
-      settings.setDisplayZoomControls(true);
-      settings.setJavaScriptCanOpenWindowsAutomatically(true);
-      settings.setPluginsEnabled(true);
-      settings.setAllowFileAccessFromFileURLs(true);
-      settings.setAllowUniversalAccessFromFileURLs(true);
-      if (android.os.Build.VERSION.SDK_INT >= 21) {
-          settings.setMixedContentMode(android.webkit.WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
+      if (isAndroid) {
+        const settings = this.myWebView.nativeElement.android.getSettings();
+        settings.setAllowFileAccess(true);
+        settings.setAllowContentAccess(true);
+        settings.setJavaScriptEnabled(true);
+        settings.setDomStorageEnabled(true);
+        settings.setDatabaseEnabled(true);
+        settings.setLoadWithOverviewMode(true);
+        settings.setSupportZoom(true);
+        settings.setBuiltInZoomControls(false);
+        settings.setDisplayZoomControls(true);
+        settings.setJavaScriptCanOpenWindowsAutomatically(true);
+        settings.setPluginsEnabled(true);
+        settings.setAllowFileAccessFromFileURLs(true);
+        settings.setAllowUniversalAccessFromFileURLs(true);
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            settings.setMixedContentMode(android.webkit.WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
+        }
       }
       this.oWebViewInterface = new WebViewInterface(
         this.myWebView.nativeElement,
@@ -135,6 +138,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (!this.access_token) {
       await this.makeLogin();
     }
+    // this.oWebViewInterface.callJSFunction('blabla', [
+    //   this.access_token
+    // ]);
     this.oWebViewInterface.callJSFunction('loadPowerBI', [
       this.access_token,
       this.pages[this.indexPage],
