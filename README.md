@@ -110,22 +110,24 @@ onLoadStarted(args: LoadEventData) {
 
 configureWebView() {
   setTimeout(() => {
-    const settings = this.myWebView.nativeElement.android.getSettings();
-    settings.setAllowFileAccess(true);
-    settings.setAllowContentAccess(true);
-    settings.setJavaScriptEnabled(true);
-    settings.setDomStorageEnabled(true);
-    settings.setDatabaseEnabled(true);
-    settings.setLoadWithOverviewMode(true);
-    settings.setSupportZoom(true);
-    settings.setBuiltInZoomControls(false);
-    settings.setDisplayZoomControls(true);
-    settings.setJavaScriptCanOpenWindowsAutomatically(true);
-    settings.setPluginsEnabled(true);
-    settings.setAllowFileAccessFromFileURLs(true);
-    settings.setAllowUniversalAccessFromFileURLs(true);
-    if (android.os.Build.VERSION.SDK_INT >= 21) {
-        settings.setMixedContentMode(android.webkit.WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
+    if (isAndroid) {
+      const settings = this.myWebView.nativeElement.android.getSettings();
+      settings.setAllowFileAccess(true);
+      settings.setAllowContentAccess(true);
+      settings.setJavaScriptEnabled(true);
+      settings.setDomStorageEnabled(true);
+      settings.setDatabaseEnabled(true);
+      settings.setLoadWithOverviewMode(true);
+      settings.setSupportZoom(true);
+      settings.setBuiltInZoomControls(false);
+      settings.setDisplayZoomControls(true);
+      settings.setJavaScriptCanOpenWindowsAutomatically(true);
+      settings.setPluginsEnabled(true);
+      settings.setAllowFileAccessFromFileURLs(true);
+      settings.setAllowUniversalAccessFromFileURLs(true);
+      if (android.os.Build.VERSION.SDK_INT >= 21) {
+          settings.setMixedContentMode(android.webkit.WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
+      }
     }
     this.oWebViewInterface = new WebViewInterface(
       this.myWebView.nativeElement,
