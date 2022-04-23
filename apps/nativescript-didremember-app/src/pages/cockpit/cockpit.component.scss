@@ -1,0 +1,113 @@
+@import '../../scss/colors';
+
+StackLayout.PageCockpit {
+  StackLayout.toolbar {
+    background-color: #07a04d;
+    padding: 10;
+    GridLayout.actions-bar {
+      StackLayout.space {
+        text-align: center;
+        vertical-align: center;
+        Label {
+          color: #ffffff;
+          height: 40;
+          border-right-width: 1;
+          border-color: #ffffff;
+        }
+      }
+      StackLayout.square {
+        width: 50;
+        height: 40;
+        padding: 5;
+        border-width: 1;
+        border-radius: 10;
+        border-color: #d9d9d9;
+        background-color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        StackLayout {
+          height: 100%;
+          vertical-align: center;
+          Label.icon {
+            text-align: center;
+            color: #8a8687;
+            font-size: 16;
+            margin-bottom: 2;
+          }
+          Label.text {
+            text-align: center;
+            color: #8a8687;
+            font-size: 8;
+          }
+        }
+        &.selected {
+          width: 60;
+          height: 50;
+          border-color: #ffffff;
+          background-color: #007301;
+          StackLayout {
+            Label.icon {
+              color: #ffffff;
+            }
+            Label.text {
+              color: #ffffff;
+            }
+          }
+        }
+      }
+    }
+  }
+  GridLayout.content {
+
+  }
+  ScrollView {
+    background-color: #eaeaea;
+    StackLayout.footer {
+      padding: 10;
+      border-top-width: 1;
+      border-color: #8a8687;
+      GridLayout.actions-bar {
+        StackLayout.square {
+          height: 40;
+          padding: 5;
+          border-width: 1;
+          border-radius: 10;
+          border-color: #d9d9d9;
+          background-color: #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          StackLayout {
+            height: 100%;
+            vertical-align: center;
+            Label.icon {
+              text-align: center;
+              color: #8a8687;
+              font-size: 16;
+              margin-bottom: 2;
+            }
+            Label.text {
+              text-align: center;
+              color: #8a8687;
+              font-size: 8;
+            }
+          }
+          &.selected {
+            height: 50;
+            border-color: #ffffff;
+            background-color: #007301;
+            StackLayout {
+              Label.icon {
+                color: #ffffff;
+              }
+              Label.text {
+                color: #ffffff;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

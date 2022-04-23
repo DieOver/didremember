@@ -1,0 +1,117 @@
+<StackLayout class="PageCockpit">
+  <StackLayout class="toolbar">
+    <GridLayout
+      columns="auto,10,auto,10,auto,10,auto,*,*,auto"
+      class="actions-bar"
+      rows="auto"
+    >
+      <StackLayout row="0" col="0" class="square selected">
+        <StackLayout>
+          <Label class="icon fas" text="&#xf0c9;"></Label>
+          <Label class="text" text="Cockpit"></Label>
+        </StackLayout>
+      </StackLayout>
+      <StackLayout row="0" col="2" class="square">
+        <StackLayout>
+          <Label class="icon fas" text="&#xf0c9;"></Label>
+          <Label class="text" text="Condição"></Label>
+        </StackLayout>
+      </StackLayout>
+      <StackLayout row="0" col="4" class="square">
+        <StackLayout>
+          <Label class="icon fas" text="&#xf0c9;"></Label>
+          <Label class="text" text="Alçada"></Label>
+        </StackLayout>
+      </StackLayout>
+      <StackLayout row="0" col="6" class="square">
+        <StackLayout>
+          <Label class="icon fas" text="&#xf0c9;"></Label>
+          <Label class="text" text="Filtros"></Label>
+        </StackLayout>
+      </StackLayout>
+      <StackLayout row="0" col="7" class="space">
+        <Label text="&nbsp;"></Label>
+      </StackLayout>
+      <StackLayout row="0" col="9" class="square">
+        <StackLayout>
+          <Label class="icon fas" text="&#xf0c9;"></Label>
+          <Label class="text" text="Mais"></Label>
+        </StackLayout>
+      </StackLayout>
+    </GridLayout>
+  </StackLayout>
+  <GridLayout class="content" columns="*" rows="*,auto">
+    <WebView
+      col="0"
+      row="0"
+      #myWebView
+      src=""
+      *ngIf="showWebView"
+      (loadStarted)="onLoadStarted($event)"
+      (loadFinished)="onLoadFinished($event)"
+    ></WebView>
+    <ScrollView
+      col="0"
+      row="1"
+      orientation="horizontal"
+      [scrollBarIndicatorVisible]="false"
+    >
+      <StackLayout class="footer">
+        <GridLayout
+          columns="auto,10,auto,10,auto,10,auto,10,auto,10,auto,10,auto,10,auto"
+          class="actions-bar"
+          rows="auto"
+        >
+          <StackLayout (tap)="changePage(0)" row="0" col="0" class="square selected">
+            <StackLayout>
+              <Label class="icon fas" text="&#xf0c9;"></Label>
+              <Label class="text" text="Realizado x Meta"></Label>
+            </StackLayout>
+          </StackLayout>
+          <StackLayout (tap)="changePage(1)" row="0" col="2" class="square">
+            <StackLayout>
+              <Label class="icon fas" text="&#xf0c9;"></Label>
+              <Label class="text" text="Comparativo Produção"></Label>
+            </StackLayout>
+          </StackLayout>
+          <StackLayout (tap)="changePage(2)" row="0" col="4" class="square">
+            <StackLayout>
+              <Label class="icon fas" text="&#xf0c9;"></Label>
+              <Label class="text" text="Prêmio Emitido"></Label>
+            </StackLayout>
+          </StackLayout>
+          <StackLayout (tap)="changePage(3)" row="0" col="6" class="square">
+            <StackLayout>
+              <Label class="icon fas" text="&#xf0c9;"></Label>
+              <Label class="text" text="Prêmio Emitido"></Label>
+            </StackLayout>
+          </StackLayout>
+          <StackLayout (tap)="changePage(4)" row="0" col="8" class="square">
+            <StackLayout>
+              <Label class="icon fas" text="&#xf0c9;"></Label>
+              <Label class="text" text="Prêmio Emitido"></Label>
+            </StackLayout>
+          </StackLayout>
+          <StackLayout (tap)="changePage(5)" row="0" col="8" class="square">
+            <StackLayout>
+              <Label class="icon fas" text="&#xf0c9;"></Label>
+              <Label class="text" text="Prêmio Emitido"></Label>
+            </StackLayout>
+          </StackLayout>
+          <StackLayout (tap)="changePage(6)" row="0" col="8" class="square">
+            <StackLayout>
+              <Label class="icon fas" text="&#xf0c9;"></Label>
+              <Label class="text" text="Prêmio Emitido"></Label>
+            </StackLayout>
+          </StackLayout>
+          <StackLayout (tap)="changePage(7)" row="0" col="8" class="square">
+            <StackLayout>
+              <Label class="icon fas" text="&#xf0c9;"></Label>
+              <Label class="text" text="Prêmio Emitido"></Label>
+            </StackLayout>
+          </StackLayout>
+        </GridLayout>
+      </StackLayout>
+    </ScrollView>
+  </GridLayout>
+</StackLayout>

@@ -8,13 +8,17 @@
   },
   "dependencies": {
     "@nativescript/core": "*",
+    "base-64": "^1.0.0",
     "nativescript-ui-sidedrawer": "^10.0.2",
-    "nativescript-webview-interface": "^1.4.4"
+    "nativescript-webview-interface": "^1.4.4",
+    "utf8": "^3.0.0"
   },
   "devDependencies": {
     "@nativescript/android": "~8.1.1",
     "@nativescript/ios": "~8.1.0",
+    "@nativescript/types-android": "8.2.0",
     "@nativescript/types-ios": "8.2.0",
-    "@nativescript/types-android": "8.2.0"
+    "@types/base-64": "^1.0.0",
+    "@types/utf8": "^3.0.1"
   }
 }

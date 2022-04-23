@@ -1,30 +1,21 @@
 import {
   Component,
   ElementRef,
-  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { LoadEventData, Screen, WebView } from '@nativescript/core';
-import { IPostit } from '../../shared/interfaces/postit.interface';
+import { WebView, isAndroid, LoadEventData } from '@nativescript/core';
 import { RouterExtensions } from '@nativescript/angular';
-import { Subscription } from 'rxjs';
-import { PostitServiceContract } from '../../shared/services/postit/postit.service.contract';
 import { WebViewInterface } from 'nativescript-webview-interface';
 import { LoginService } from '../../shared/services/login/login.service';
 import { knownFolders } from '@nativescript/core/file-system';
-import { isAndroid } from '@nativescript/core';
 
 @Component({
-  selector: 'ns-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  selector: 'ns-cockpit',
+  templateUrl: './cockpit.component.html',
+  styleUrls: ['./cockpit.component.scss'],
 })
-export class HomeComponent implements OnInit, OnDestroy {
-  widthDIPs = Screen.mainScreen.widthDIPs;
-  sizeScreen = 0;
-  postits: IPostit[] = [];
-  postits$: Subscription;
+export class CockpitComponent implements OnInit {
 
   showWebView = true;
   oWebViewInterface: WebViewInterface = null;
@@ -43,14 +34,26 @@ export class HomeComponent implements OnInit, OnDestroy {
   indexPage = 0;
   webviewSrc = `file:///${knownFolders.currentApp().path}/assets/web/index.html`;
 
-  access_token: string;
+  oauth_token: string;
+  powerbi_token: string;
+  perfil = {
+    "usuario": "",
+    "nome": "",
+    "email": ""
+  }
 
   constructor(
-    private postitService: PostitServiceContract,
     private router: RouterExtensions,
     private loginService: LoginService
-  ) {
-    this.sizeScreen = this.widthDIPs / 2 - 24;
+  ) {}
+
+  async ngOnInit() {
+    await this.oauth();
+    await this.login();
+    await this.powerbi();
+    setTimeout(() => {
+      this.callJsFunction();
+    }, 2000);
   }
 
   configureWebView() {
@@ -112,36 +115,58 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnInit(): void {
-    this.postits$ = this.postitService.postits.subscribe({
-      next: (res) => {
-        this.postits = res;
-      },
-      error: (error) => {
-        console.error('categorys', error);
-        this.postits = [];
-      },
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.postits$.unsubscribe();
-  }
-
-  onClickItem(postit: IPostit): void {
-    const findedPostit = this.postitService.find(postit.id);
-    if (findedPostit.id) {
-      this.navigateToDetail(findedPostit);
+  async oauth() {
+    try {
+      const result: any = await this.loginService.oauth().toPromise();
+      console.log('oauth', result);
+      this.oauth_token = result.access_token;
+    } catch (error) {
+      console.error('oauth error', error)
     }
   }
 
-  navigateToRegisterCategory(): void {
-    this.router.navigateByUrl('/category');
+  async login() {
+    try {
+      const result: any = await this.loginService.login(this.oauth_token).toPromise();
+      console.log('login', result);
+      this.perfil = result.login;
+    } catch (error) {
+      console.error('login error', error)
+    }
   }
 
-  navigateToDetail(item: IPostit): void {
-    this.router.navigateByUrl(`/questions/${item.id}`);
+  async powerbi() {
+    try {
+      const result: any = await this.loginService.powerbi(this.oauth_token).toPromise();
+      console.log('powerbi', result);
+      this.powerbi_token = result.accessToken;
+    } catch (error) {
+      console.error('powerbi error', error)
+    }
   }
 
-  postitTrackBy = (postit: IPostit): string => postit.id;
+  changePage(pageNumber: number) {
+    this.indexPage = pageNumber;
+    this.oWebViewInterface.callJSFunction('changeSection', [
+      this.pages[this.indexPage]
+    ]);
+  }
+
+  async callJsFunction() {
+    this.oWebViewInterface.callJSFunction('loadPowerBI', [
+      this.powerbi_token,
+      this.pages[this.indexPage],
+      this.perfil.usuario,
+      '',
+      '',
+      'Atual',
+    ]);
+  }
+
+  async changeJs() {
+    this.oWebViewInterface.callJSFunction('changeSection', [
+      this.pages[this.indexPage]
+    ]);
+  }
+
 }
