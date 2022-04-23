@@ -1,6 +1,8 @@
 @import '../../scss/colors';
 
 GridLayout.not-find {
+  padding-top: 16;
+  height: 100%;
   Label {
     font-size: 16;
     text-align: center;

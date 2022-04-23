@@ -4,6 +4,9 @@ import { IPostit } from '../../shared/interfaces/postit.interface';
 import { RouterExtensions } from '@nativescript/angular';
 import { Subscription } from 'rxjs';
 import { PostitServiceContract } from '../../shared/services/postit/postit.service.contract';
+import { on } from '@nativescript/core/application';
+import { OrientationChangedEventData } from '@nativescript/core';
+import { off } from '@nativescript/core/application';
 
 @Component({
   selector: 'ns-home',
@@ -11,7 +14,6 @@ import { PostitServiceContract } from '../../shared/services/postit/postit.servi
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  widthDIPs = Screen.mainScreen.widthDIPs;
   sizeScreen = 0;
   postits: IPostit[] = [];
   postits$: Subscription;
@@ -20,7 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private postitService: PostitServiceContract,
     private router: RouterExtensions
   ) {
-    this.sizeScreen = this.widthDIPs / 2 - 24;
+    this.sizeScreen = Screen.mainScreen.widthDIPs / 2 - 24;
   }
 
   ngOnInit(): void {
@@ -33,10 +35,16 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.postits = [];
       },
     });
+    on("orientationChanged", (evt: OrientationChangedEventData) => {
+      console.log('orientationChanged', evt.newValue);
+    });
   }
 
   ngOnDestroy(): void {
     this.postits$.unsubscribe();
+    off("orientationChanged", () => {
+      console.log('remove watch orientationChanged');
+    });
   }
 
   onClickItem(postit: IPostit): void {
