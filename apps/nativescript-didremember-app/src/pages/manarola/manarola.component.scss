@@ -1,0 +1,80 @@
+@import '../../scss/colors';
+
+GridLayout.container {
+  width: 100%;
+  height: 100%;
+  AbsoluteLayout {
+    width: 100%;
+    height: 100%;
+    GridLayout.bg {
+      width: 100%;
+      height: 100%;
+      StackLayout.image {
+        background-size: cover;
+        background-position: right bottom;
+        background-repeat: no-repeat;
+        background-image: url('https://h8f7z4t2.stackpathcdn.com/wp-content/uploads/2016/10/greece-italy-manarola-1920x1200-113172.jpg');
+      }
+      StackLayout.content {
+        background-color: whitesmoke;
+        padding: 20;
+        Label {
+          &.name {
+            font-size: 14;
+            font-weight: bold;
+            color: #222222;
+            margin-bottom: 10;
+          }
+          &.desc {
+            font-size: 12;
+            font-weight: normal;
+            color: #666666;
+            white-space: normal;
+          }
+        }
+      }
+    }
+    GridLayout.card {
+      background-color: transparent;
+      width: 100%;
+      height: 100%;
+      StackLayout {
+        background-color: white;
+        margin: 20;
+        border-radius: 20;
+        padding: 20;
+        box-shadow: 0 0 5 0 rgba(0, 0, 0, 0.5);
+        Label {
+          &.name {
+            font-size: 16;
+            font-weight: bold;
+            color: #222222;
+            margin-bottom: 10;
+          }
+          &.desc {
+            font-size: 12;
+            font-weight: normal;
+            color: #666666;
+            white-space: normal;
+          }
+        }
+      }
+    }
+  }
+  GridLayout.footer {
+    background-color: white;
+    border-top-left-radius: 20;
+    border-top-right-radius: 20;
+    padding: 20;
+    Button {
+      min-width: 40;
+      background-color: #6097AE;
+      font-size: 14;
+      font-weight: bold;
+      color: white;
+      border-radius: 15;
+      text-align: center;
+      padding: 10;
+    }
+  }
+}

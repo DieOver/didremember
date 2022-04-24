@@ -3,10 +3,14 @@ import { Routes } from '@angular/router';
 import { NativeScriptRouterModule } from '@nativescript/angular';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/manarola', pathMatch: 'full' },
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then((m) => m.HomeModule),
+  },
+  {
+    path: 'manarola',
+    loadChildren: () => import('./pages/manarola/manarola.module').then((m) => m.ManarolaModule),
   },
   {
     path: 'cockpit',
