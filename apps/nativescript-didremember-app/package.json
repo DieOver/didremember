@@ -9,6 +9,7 @@
   "dependencies": {
     "@nativescript/core": "*",
     "base-64": "^1.0.0",
+    "nativescript-audio": "^6.2.6",
     "nativescript-ui-sidedrawer": "^10.0.2",
     "nativescript-webview-interface": "^1.4.4",
     "utf8": "^3.0.0"

@@ -60,7 +60,7 @@ export class DidInputTextComponent implements AfterViewChecked {
 
   error: ValidationErrors = {
     required: false,
-    minlength: null,
+    minlength: null
   };
 
   ngAfterViewChecked(): void {

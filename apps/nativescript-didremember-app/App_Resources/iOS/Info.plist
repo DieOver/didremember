@@ -15,6 +15,8 @@
     <string>Icon-Small.png</string>
     <string>Icon-Small-50@2x.png</string>
   </array>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>Usado para poder mandar audios pelo chat, sem esse recurso, voce poderá apenas escrever.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>

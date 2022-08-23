@@ -16,5 +16,6 @@ import { ManarolaRouting } from './manarola.routing';
   ],
   declarations: [ManarolaComponent],
   schemas: [NO_ERRORS_SCHEMA],
+  providers: []
 })
 export class ManarolaModule {}
