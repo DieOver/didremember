@@ -5,7 +5,7 @@
       <StackLayout class="header">
         <ng-container [formGroup]="categoryForm">
           <GridLayout columns="auto" rows="auto,auto">
-            <did-input-text (props)="nameProps($event)" [dirty]="fc.name.dirty" [errors]="fc.name.errors" controlName="name" label="Categoria" col="0" row="0"></did-input-text>
+            <did-input-text [dirty]="fc.name.dirty" [errors]="fc.name.errors" controlName="name" label="Categoria" col="0" row="0"></did-input-text>
             <FlexboxLayout width="100%" col="0" row="2">
               <did-button *ngIf="selectPostit?.id != null" class="cancel" (tap)="cancel()" text="Cancelar"></did-button>
               <did-button (tap)="submit()" text="{{ selectPostit?.id ? 'Editar' : 'Adicionar' }}"></did-button>

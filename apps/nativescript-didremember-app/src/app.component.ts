@@ -7,10 +7,13 @@ import {
   SlideInOnTopTransition,
 } from 'nativescript-ui-sidedrawer';
 import { filter } from 'rxjs/operators';
-import { Application } from '@nativescript/core';
+import { Application, Utils as U } from '@nativescript/core';
 import { Utils } from './shared/utils/util';
 import { PostitServiceContract } from './shared/services/postit/postit.service.contract';
 import { IStatusBar } from './shared/interfaces/statusbar.interface';
+import { JailBreaker } from '@dieover/jail-breaker';
+
+// declare const com: any;
 
 @Component({
   selector: 'app-root',
@@ -39,6 +42,12 @@ export class AppComponent implements OnInit {
       this._activatedUrl = event.urlAfterRedirects;
       this.changeStatusBarText(event.urlAfterRedirects);
     });
+
+    // console.log('com.nsplugins', com.nsplugins);
+    // const jailBreaker = new com.nsplugins.JailBreaker(U.android.getApplicationContext());
+    // console.log('jailBreaker', jailBreaker);
+    // console.log('jailBreaker isRooted', jailBreaker.isRooted());
+    console.log('jailBreaker isRooted', JailBreaker.isRooted());
   }
 
   changeStatusBarText(url: string): void {

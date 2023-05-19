@@ -1,4 +1,4 @@
-import { Application, Color, Device, isIOS } from '@nativescript/core';
+import { Application, Color, Device, isIOS, Utils as U } from '@nativescript/core';
 import { IStatusBar } from '../interfaces/statusbar.interface';
 
 export const Utils = {
@@ -13,10 +13,10 @@ export const Utils = {
           );
         } else {
           const _resolve = () => {
-            const packageManager = Application.android.context.getPackageManager();
-            resolve(packageManager.getPackageInfo(Application.android.context.getPackageName(), 0).versionName);
+            const packageManager = U.android.getApplicationContext().getPackageManager();
+            resolve(packageManager.getPackageInfo(U.android.getApplicationContext().getPackageName(), 0).versionName);
           };
-          if (Application.android.context) {
+          if (U.android.getApplicationContext()) {
             _resolve();
           } else {
             Application.on(Application.launchEvent, _resolve);

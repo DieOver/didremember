@@ -18,13 +18,16 @@ export class CategoryComponent implements OnInit {
   selectPostit: IPostit = {} as IPostit;
   postits: IPostit[] = [];
   postits$: Subscription;
-  tfName: TextField = null;
 
   categoryForm: FormGroup = this.fb.group({
     id: ['', []],
     name: ['', [Validators.required, Validators.minLength(4)]],
     count: ['', []],
   });
+
+  get fc() {
+    return this.categoryForm.controls;
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -75,14 +78,6 @@ export class CategoryComponent implements OnInit {
     this.modal.showModal(ConfirmComponent, options).then((res) => {
       console.log('modal', res);
     });
-  }
-
-  get fc() {
-    return this.categoryForm.controls;
-  }
-
-  nameProps(ev: TextField): void {
-    this.tfName = ev;
   }
 
   cancel = (): void => {
