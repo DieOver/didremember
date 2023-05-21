@@ -2,7 +2,7 @@
   <did-toolbar title="POSTiT!"></did-toolbar>
   <GridLayout columns="*" rows="*,auto">
     <ScrollView [scrollBarIndicatorVisible]="false">
-      <GridLayout *ngIf="!postits.length" class="not-find" columns="*,auto,*" rows="*,auto,auto,*">
+      <GridLayout *ngIf="!postits.length" class="not-find" col="0" row="0" columns="*,auto,*" rows="*,auto,auto,*">
         <Label row="1" col="1" text="Nenhuma Categoria." class="no_content_label"></Label>
         <Label (tap)="navigateToRegisterCategory()" row="2" col="1" text="Clique aqui para criar uma." class="no_content_label_clique"></Label>
       </GridLayout>
@@ -12,7 +12,7 @@
             [sizeScreen]="sizeScreen"
             [count]="postit.count"
             [name]="postit.name"
-            (tap)="onClickItem(postit)"
+            (emitTap)="onClickItem(postit)"
           ></did-card>
         </ng-container>
       </WrapLayout>

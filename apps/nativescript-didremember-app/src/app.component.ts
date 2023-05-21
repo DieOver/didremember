@@ -4,6 +4,7 @@ import { NavigationOptions, RouterExtensions } from '@nativescript/angular';
 import {
   DrawerTransitionBase,
   RadSideDrawer,
+  SlideAlongTransition,
   SlideInOnTopTransition,
 } from 'nativescript-ui-sidedrawer';
 import { filter } from 'rxjs/operators';
@@ -22,7 +23,7 @@ import { JailBreaker } from '@dieover/jail-breaker';
 export class AppComponent implements OnInit {
 
   public appVersion = '0.0';
-  public sideDrawerTransition: DrawerTransitionBase = new SlideInOnTopTransition();
+  public sideDrawerTransition: DrawerTransitionBase = new SlideAlongTransition();
 
   private _activatedUrl: string;
 
@@ -73,7 +74,7 @@ export class AppComponent implements OnInit {
 
   onNavItemTap(navItemRoute: string): void {
     const navigationOptions: NavigationOptions = {};
-    this.routerExtensions.navigateByUrl(navItemRoute, navigationOptions);
+    this.routerExtensions.navigate([navItemRoute], navigationOptions);
 
     const sideDrawer = <RadSideDrawer>Application.getRootView();
     sideDrawer.closeDrawer();

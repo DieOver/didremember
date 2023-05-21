@@ -18,6 +18,10 @@ StackLayout.card {
   margin: var(--margin);
   text-align: var(--text-align);
   vertical-align: var(--vertical-align);
+  // width: calc(50% * 0.87);
+  Image {
+    width: 20;
+  }
   Label {
     color: var(--label-color);
   }

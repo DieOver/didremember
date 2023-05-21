@@ -3,10 +3,10 @@
   shadowColor="#000000"
   [drawerTransition]="sideDrawerTransition"
 >
-  <GridLayout class="menu" tkDrawerContent rows="54,*" columns="*">
+  <GridLayout class="menu" tkDrawerContent rows="100,*" columns="*">
     <StackLayout class="menu-header" col="0" row="0"></StackLayout>
     <ScrollView col="0" row="1">
-      <GridLayout rows="auto,auto,auto,*,auto" columns="*" class="menu-content">
+      <GridLayout rows="auto,auto,*,auto" columns="*" class="menu-content">
         <GridLayout
           col="0"
           row="0"
@@ -29,19 +29,7 @@
           <Label col="1" text="CATEGORIAS" class="menu-label"></Label>
           <Label col="2" text="&#xf105;" class="menu-icon fas"></Label>
         </GridLayout>
-        <!-- <GridLayout
-          last-child
-          col="0"
-          row="2"
-          columns="30,*,auto"
-          [class.selected]="isComponentSelected('/questions')"
-          (tap)="onNavItemTap('/questions/1')"
-        >
-          <Label col="0" text="&#xf0a1;" class="menu-icon fas"></Label>
-          <Label col="1" text="PERGUNTAS" class="menu-label"></Label>
-          <Label col="2" text="&#xf105;" class="menu-icon fas"></Label>
-        </GridLayout> -->
-        <GridLayout version col="0" row="4" columns="auto,*,auto" rows="auto">
+        <GridLayout version col="0" row="3" columns="auto,*,auto" rows="auto">
           <Label col="0" text="Lennon Milicic Costa" class="menu-version small"></Label>
           <Label col="2" [text]="appVersion" class="menu-version"></Label>
         </GridLayout>

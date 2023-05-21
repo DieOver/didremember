@@ -19,7 +19,7 @@ export class QuestionsComponent implements OnInit, OnDestroy {
 
   constructor(
     private postitService: PostitServiceContract,
-    private router: RouterExtensions
+    private routerExtensions: RouterExtensions
   ) {
     this.sizeScreen = this.widthDIPs / 2 - 24;
   }
@@ -48,11 +48,11 @@ export class QuestionsComponent implements OnInit, OnDestroy {
   }
 
   navigateToRegisterCategory(): void {
-    this.router.navigateByUrl('/category');
+    this.routerExtensions.navigate(['/category']);
   }
 
   navigateToDetail(item: IPostit): void {
-    this.router.navigateByUrl(`/category/${item.id}`);
+    this.routerExtensions.navigate(['/category', item.id]);
   }
 
   postitTrackBy = (postit: IPostit): string => postit.id;
