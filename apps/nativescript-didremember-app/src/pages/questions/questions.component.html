@@ -2,7 +2,11 @@
   <did-toolbar [canBack]="true" title="POSTiT!"></did-toolbar>
   <GridLayout columns="*" rows="*">
     <ScrollView [scrollBarIndicatorVisible]="false">
-      <Label text="asdasdasd"></Label>
+      <StackLayout>
+        <Label [text]="postit.id"></Label>
+        <Label [text]="postit.name"></Label>
+        <Label [text]="postit.count"></Label>
+      </StackLayout>
     </ScrollView>
   </GridLayout>
 </StackLayout>
