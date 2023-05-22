@@ -1,0 +1,8 @@
+{
+	"name": "migration",
+	"paths": [
+		"package.json",
+		"package-lock.json",
+		"package.json"
+	]
+}
