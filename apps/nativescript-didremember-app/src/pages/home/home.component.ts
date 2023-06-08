@@ -1,11 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Screen, knownFolders } from '@nativescript/core';
+import { Screen, knownFolders, OrientationChangedEventData } from '@nativescript/core';
 import { IPostit } from '../../shared/interfaces/postit.interface';
 import { RouterExtensions } from '@nativescript/angular';
 import { Subscription } from 'rxjs';
 import { PostitServiceContract } from '../../shared/services/postit/postit.service.contract';
 import { on } from '@nativescript/core/application';
-import { OrientationChangedEventData } from '@nativescript/core';
 import { off } from '@nativescript/core/application';
 import * as Https from '@nativescript-community/https';
 

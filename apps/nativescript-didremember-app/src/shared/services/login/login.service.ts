@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { isAndroid } from '@nativescript/core';
-import { isIOS } from '@nativescript/core';
+import { isAndroid, isIOS } from '@nativescript/core';
 import { Base64 } from '../../utils/base64';
 
 @Injectable({ providedIn: 'root' })
