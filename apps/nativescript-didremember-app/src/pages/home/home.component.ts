@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { knownFolders, OrientationChangedEventData } from '@nativescript/core';
+import { FadeTransition, knownFolders, OrientationChangedEventData, PageTransition, SharedTransition, SlideTransition } from '@nativescript/core';
 import { IPostit } from '../../shared/interfaces/postit.interface';
 import { RouterExtensions } from '@nativescript/angular';
 import { Subscription } from 'rxjs';
@@ -107,7 +107,16 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   navigateToDetail(item: IPostit): void {
-    this.routerExtensions.navigate(['/questions/', item.id]);
+    this.routerExtensions.navigate(['/questions/', item.id], {
+      transition: SharedTransition.custom(new PageTransition(), {
+        pageEnd: {
+          spring: {
+            tension: 140,
+            friction: 16
+          }
+        }
+      })
+    });
   }
 
   postitTrackBy(postit: IPostit): string {

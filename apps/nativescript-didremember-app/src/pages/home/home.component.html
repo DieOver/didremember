@@ -10,6 +10,7 @@
           </GridLayout>
         </ng-container>
         <ng-container *ngIf="postits.length">
+          <Image src="~/assets/images/home.png" sharedTransitionTag="hero" width="50" height="50" />
           <WrapLayout col="0" row="0">
             <ng-container *ngFor="let postit of postits; trackBy: postitTrackBy;">
               <did-card

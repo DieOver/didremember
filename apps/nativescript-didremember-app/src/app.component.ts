@@ -8,7 +8,7 @@ import {
   SlideInOnTopTransition,
 } from 'nativescript-ui-sidedrawer';
 import { filter } from 'rxjs/operators';
-import { Application, Utils as U } from '@nativescript/core';
+import { Application, PageTransition, SharedTransition, Utils as U } from '@nativescript/core';
 import { Utils } from './shared/utils/util';
 import { PostitServiceContract } from './shared/services/postit/postit.service.contract';
 import { IStatusBar } from './shared/interfaces/statusbar.interface';
@@ -70,7 +70,10 @@ export class AppComponent implements OnInit {
   }
 
   onNavItemTap(navItemRoute: string): void {
-    const navigationOptions: NavigationOptions = {};
+    const navigationOptions: NavigationOptions = {
+      // transition: SharedTransition.custom(new PageTransition())
+    };
+
     this.routerExtensions.navigate([navItemRoute], navigationOptions);
 
     const sideDrawer = <RadSideDrawer>Application.getRootView();
