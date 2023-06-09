@@ -4,19 +4,18 @@
     <ScrollView [scrollBarIndicatorVisible]="false" col="0" row="0">
       <StackLayout>
         <ng-container *ngIf="!postits.length">
-          <GridLayout class="not-find" col="0" row="0" columns="*,auto,*" rows="*,auto,auto,*">
-            <Label row="1" col="1" text="Nenhuma Categoria." class="no_content_label"></Label>
-            <Label (tap)="navigateToRegisterCategory()" row="2" col="1" text="Clique aqui para criar uma." class="no_content_label_clique"></Label>
+          <GridLayout class="not-find" columns="*" rows="*,auto,auto,*">
+            <Label col="0" row="1" text="Nenhuma Categoria." class="no_content_label"></Label>
+            <Label col="0" row="2" text="Clique aqui para criar uma." class="no_content_label_clique" (tap)="navigateToRegisterCategory()"></Label>
           </GridLayout>
         </ng-container>
         <ng-container *ngIf="postits.length">
-          <WrapLayout col="0" row="0">
+          <WrapLayout>
             <ng-container *ngFor="let postit of postits; let i = index; trackBy: postitTrackBy;">
-              <Image src="~/assets/images/globe.png" [sharedTransitionTag]="'mundo-' + i" width="150" height="150" />
               <did-card
                 [count]="postit.count"
                 [name]="postit.name"
-                (emitTap)="onClickItem(postit, 'mundo-' + i)"
+                (emitTap)="onClickItem(postit)"
               ></did-card>
             </ng-container>
           </WrapLayout>

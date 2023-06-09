@@ -16,7 +16,6 @@ GridLayout.not-find {
 }
 
 StackLayout.Page {
-  background-color: black;
   GridLayout {
     ScrollView {
       StackLayout {
@@ -24,4 +23,10 @@ StackLayout.Page {
       }
     }
   }
+}
+
+Button {
+  background-color: green;
+  font-weight: bold;
+  font-size: 24;
 }

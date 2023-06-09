@@ -1,12 +1,11 @@
 <StackLayout class="Page">
   <did-toolbar [canBack]="true" title="POSTiT!"></did-toolbar>
   <GridLayout columns="*" rows="*">
-    <ScrollView [scrollBarIndicatorVisible]="false">
+    <ScrollView col="0" row="0" [scrollBarIndicatorVisible]="false">
       <StackLayout>
         <Label [text]="postit.id"></Label>
         <Label [text]="postit.name"></Label>
         <Label [text]="postit.count"></Label>
-        <Image src="~/assets/images/globe.png" [sharedTransitionTag]="nameImageAnimated" width="1000" height="1000" />
       </StackLayout>
     </ScrollView>
   </GridLayout>
