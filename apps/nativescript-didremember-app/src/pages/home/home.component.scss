@@ -15,7 +15,8 @@ GridLayout.not-find {
   }
 }
 
-StackLayout {
+StackLayout.Page {
+  background-color: black;
   GridLayout {
     ScrollView {
       StackLayout {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IPostit } from '../../shared/interfaces/postit.interface';
 import { PostitServiceContract } from '../../shared/services/postit/postit.service.contract';
 import { ActivatedRoute } from '@angular/router';
@@ -11,11 +11,15 @@ import { ActivatedRoute } from '@angular/router';
 export class QuestionsComponent implements OnInit {
 
   postit: IPostit = {} as IPostit;
+  nameImageAnimated = '';
 
   constructor(
     private postitService: PostitServiceContract,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+    this.nameImageAnimated = this.activatedRoute.snapshot.queryParamMap.get('nameImageAnimated');
+    console.log("nameImageAnimated", this.nameImageAnimated);
+  }
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params["id"];

@@ -10,13 +10,13 @@
           </GridLayout>
         </ng-container>
         <ng-container *ngIf="postits.length">
-          <Image src="~/assets/images/home.png" sharedTransitionTag="hero" width="50" height="50" />
           <WrapLayout col="0" row="0">
-            <ng-container *ngFor="let postit of postits; trackBy: postitTrackBy;">
+            <ng-container *ngFor="let postit of postits; let i = index; trackBy: postitTrackBy;">
+              <Image src="~/assets/images/globe.png" [sharedTransitionTag]="'mundo-' + i" width="150" height="150" />
               <did-card
                 [count]="postit.count"
                 [name]="postit.name"
-                (emitTap)="onClickItem(postit)"
+                (emitTap)="onClickItem(postit, 'mundo-' + i)"
               ></did-card>
             </ng-container>
           </WrapLayout>

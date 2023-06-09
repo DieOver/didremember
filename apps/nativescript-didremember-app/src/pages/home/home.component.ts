@@ -94,11 +94,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  onClickItem(postit: IPostit): void {
+  onClickItem(postit: IPostit, nameImageAnimated: string): void {
     console.log('onClickItem', postit);
     const findedPostit = this.postitService.find(postit.id);
     if (findedPostit?.id) {
-      this.navigateToDetail(findedPostit);
+      this.navigateToDetail(findedPostit, nameImageAnimated);
     }
   }
 
@@ -106,10 +106,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.routerExtensions.navigate(['/category']);
   }
 
-  navigateToDetail(item: IPostit): void {
+  navigateToDetail(item: IPostit, nameImageAnimated: string): void {
     this.routerExtensions.navigate(['/questions/', item.id], {
+      queryParams: { nameImageAnimated },
       transition: SharedTransition.custom(new PageTransition(), {
         pageEnd: {
+          spring: {
+            tension: 140,
+            friction: 16
+          }
+        },
+        pageReturn: {
           spring: {
             tension: 140,
             friction: 16

@@ -3,10 +3,10 @@
   <GridLayout columns="*" rows="*">
     <ScrollView [scrollBarIndicatorVisible]="false">
       <StackLayout>
-        <Image src="~/assets/images/home.png" sharedTransitionTag="hero" width="150" height="150" />
         <Label [text]="postit.id"></Label>
         <Label [text]="postit.name"></Label>
         <Label [text]="postit.count"></Label>
+        <Image src="~/assets/images/globe.png" [sharedTransitionTag]="nameImageAnimated" width="1000" height="1000" />
       </StackLayout>
     </ScrollView>
   </GridLayout>
