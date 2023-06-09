@@ -7,6 +7,8 @@ import {
   HttpRequest,
   HttpHandler,
 } from '@angular/common/http';
+import { ApplicationSettings } from '@nativescript/core';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class MyInterceptor implements HttpInterceptor {
@@ -14,12 +16,12 @@ export class MyInterceptor implements HttpInterceptor {
     httpRequest: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = undefined;
+    const token = ApplicationSettings.getString(environment.auth.token, '');
     if (token) {
       httpRequest = httpRequest.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`,
-        },
+        }
       });
     }
     return next.handle(httpRequest);

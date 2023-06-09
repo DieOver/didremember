@@ -1,31 +1,29 @@
 <StackLayout class="Page">
-  <GridLayout columns="*" rows="*">
-    <ScrollView [scrollBarIndicatorVisible]="false">
+  <ScrollView [scrollBarIndicatorVisible]="false">
 
-      <GridLayout rows="*,auto" columns="*" class="container">
-        <AbsoluteLayout col="0" row="0">
-          <GridLayout top="0" left="0" rows="*,*" columns="*" class="bg">
-            <StackLayout row="0" col="0" class="image"></StackLayout>
-            <StackLayout row="1" col="0" class="content" [style.paddingTop]="spaceCardMidle">
-              <Label class="name" text="Cheryl"></Label>
-              <Label class="desc" text="When i first came here i fell in love with this such a miraculous place, Coastline and buildings are beautiful, what a wonderful travel."></Label>
-            </StackLayout>
-          </GridLayout>
-          <GridLayout top="0" left="0" rows="*,auto,*" columns="*" class="card">
-            <StackLayout (loaded)="cardMiddleLoaded()" #cardMiddle row="1" col="0">
-              <Label class="name" text="Manarola"></Label>
-              <Label class="desc" text="Manarola is a little town located in Italy, very beautiful and creative place."></Label>
-            </StackLayout>
-          </GridLayout>
-        </AbsoluteLayout>
-        <GridLayout columns="auto,20,*" rows="*" class="footer" col="0" row="1">
-          <Button class="icon fas" col="0" row="0" text="&#xf004;"></Button>
-          <Button col="2" row="0" text="Order"></Button>
+    <GridLayout rows="*,auto" columns="*" class="container">
+      <AbsoluteLayout col="0" row="0">
+        <GridLayout top="0" left="0" rows="*,*" columns="*" class="bg">
+          <StackLayout row="0" col="0" class="image"></StackLayout>
+          <StackLayout row="1" col="0" class="content" [style.paddingTop]="spaceCardMidle">
+            <Label class="name" text="Cheryl"></Label>
+            <Label class="desc" text="When i first came here i fell in love with this such a miraculous place, Coastline and buildings are beautiful, what a wonderful travel."></Label>
+          </StackLayout>
         </GridLayout>
+        <GridLayout top="0" left="0" rows="*,auto,*" columns="*" class="card">
+          <StackLayout (loaded)="cardMiddleLoaded()" #cardMiddle row="1" col="0">
+            <Label class="name" text="Manarola"></Label>
+            <Label class="desc" text="Manarola is a little town located in Italy, very beautiful and creative place."></Label>
+          </StackLayout>
+        </GridLayout>
+      </AbsoluteLayout>
+      <GridLayout columns="auto,20,*" rows="*" class="footer" col="0" row="1">
+        <Button class="icon fas" col="0" row="0" text="&#xf004;"></Button>
+        <Button col="2" row="0" text="Order"></Button>
       </GridLayout>
+    </GridLayout>
 
-    </ScrollView>
-  </GridLayout>
+  </ScrollView>
 </StackLayout>
 
 <!-- <StackLayout class="Page">
