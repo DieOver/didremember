@@ -1,28 +1,35 @@
 @import '../../../scss/colors';
 
 :host {
-  --marker-color: #FFFFFF;
+  --container-padding: 8;
+  --container-width: 50%;
+
+  --marker-color: #325862;
   --background-color: #c3f44d;
   --padding: 16;
-  --margin: 8;
+  --margin: 0;
   --text-align: center;
   --vertical-align: center;
 
   --label-color: #325862;
 }
 
-StackLayout.card {
-  background-color: var(--background-color);
-  background: linear-gradient(135deg, var(--marker-color) 0%, var(--background-color) 1%);
-  padding: var(--padding);
-  margin: var(--margin);
-  text-align: var(--text-align);
-  vertical-align: var(--vertical-align);
-  // width: calc(50% * 0.87);
-  Image {
-    width: 20;
-  }
-  Label {
-    color: var(--label-color);
+StackLayout.container {
+  padding: var(--container-padding);
+  width: var(--container-width);
+  StackLayout.card {
+    background-color: var(--background-color);
+    background: linear-gradient(135deg, var(--marker-color) 0%, var(--background-color) 1%);
+    padding: var(--padding);
+    margin: var(--margin);
+    text-align: var(--text-align);
+    vertical-align: var(--vertical-align);
+    height: 150;
+    Image {
+      width: 20;
+    }
+    Label {
+      color: var(--label-color);
+    }
   }
 }

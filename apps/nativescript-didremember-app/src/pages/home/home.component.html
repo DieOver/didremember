@@ -2,20 +2,21 @@
   <did-toolbar title="POSTiT!"></did-toolbar>
   <GridLayout columns="*" rows="*,auto">
     <ScrollView [scrollBarIndicatorVisible]="false">
-      <GridLayout *ngIf="!postits.length" class="not-find" col="0" row="0" columns="*,auto,*" rows="*,auto,auto,*">
-        <Label row="1" col="1" text="Nenhuma Categoria." class="no_content_label"></Label>
-        <Label (tap)="navigateToRegisterCategory()" row="2" col="1" text="Clique aqui para criar uma." class="no_content_label_clique"></Label>
-      </GridLayout>
-      <WrapLayout *ngIf="postits.length" style="padding: 8" col="0" row="0">
-        <ng-container *ngFor="let postit of postits; trackBy: postitTrackBy">
-          <did-card
-            [sizeScreen]="sizeScreen"
-            [count]="postit.count"
-            [name]="postit.name"
-            (emitTap)="onClickItem(postit)"
-          ></did-card>
-        </ng-container>
-      </WrapLayout>
+      <StackLayout>
+        <GridLayout *ngIf="!postits.length" class="not-find" col="0" row="0" columns="*,auto,*" rows="*,auto,auto,*">
+          <Label row="1" col="1" text="Nenhuma Categoria." class="no_content_label"></Label>
+          <Label (tap)="navigateToRegisterCategory()" row="2" col="1" text="Clique aqui para criar uma." class="no_content_label_clique"></Label>
+        </GridLayout>
+        <WrapLayout *ngIf="postits.length" col="0" row="0">
+          <ng-container *ngFor="let postit of postits; trackBy: postitTrackBy">
+            <did-card
+              [count]="postit.count"
+              [name]="postit.name"
+              (emitTap)="onClickItem(postit)"
+            ></did-card>
+          </ng-container>
+        </WrapLayout>
+      </StackLayout>
     </ScrollView>
   </GridLayout>
 </StackLayout>

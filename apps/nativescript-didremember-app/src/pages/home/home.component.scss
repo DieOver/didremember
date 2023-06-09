@@ -14,3 +14,13 @@ GridLayout.not-find {
     }
   }
 }
+
+StackLayout {
+  GridLayout {
+    ScrollView {
+      StackLayout {
+        padding: 8;
+      }
+    }
+  }
+}

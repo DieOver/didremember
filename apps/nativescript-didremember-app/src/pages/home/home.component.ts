@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Screen, knownFolders, OrientationChangedEventData } from '@nativescript/core';
+import { knownFolders, OrientationChangedEventData } from '@nativescript/core';
 import { IPostit } from '../../shared/interfaces/postit.interface';
 import { RouterExtensions } from '@nativescript/angular';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { PostitServiceContract } from '../../shared/services/postit/postit.service.contract';
 import { on } from '@nativescript/core/application';
 import { off } from '@nativescript/core/application';
@@ -14,33 +14,30 @@ import * as Https from '@nativescript-community/https';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  sizeScreen = 0;
   postits: IPostit[] = [];
   postits$: Subscription = null;
 
   constructor(
     private postitService: PostitServiceContract,
     private routerExtensions: RouterExtensions
-  ) {
-    this.sizeScreen = Screen.mainScreen.widthDIPs / 2 - 24;
-  }
+  ) {}
 
   makeSSLPinning(): void {
     const dir = knownFolders.currentApp().getFolder('assets');
     console.log('dir', dir);
     const certificate = dir.getFile('httpbin.org.cer').path;
     console.log('certificate', certificate);
-    Https.enableSSLPinning({ host: 'httpbin.org', commonName: 'httpbin.org', certificate });
+    // Https.enableSSLPinning({ host: 'httpbin.org', commonName: 'httpbin.org', certificate });
 
-    Https.request({
-      url: 'https://httpbin.org/get',
-      method: 'GET',
-      timeout: 30,
-    }).then(function (response) {
-      console.log('Https.request response', response);
-    }).catch(function (error) {
-      console.error('Https.request error', error);
-    });
+    // Https.request({
+    //   url: 'https://httpbin.org/get',
+    //   method: 'GET',
+    //   timeout: 30,
+    // }).then(function (response) {
+    //   console.log('Https.request response', response);
+    // }).catch(function (error) {
+    //   console.error('Https.request error', error);
+    // });
 
     Https.request({
       url: 'https://openapi-int.hdi.com.br/corporate/security/v1/authorize?key=AIzaSyDENSB_k_EPJQTlGJWaLHJIFbP5FAJOiwc',
@@ -100,7 +97,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   onClickItem(postit: IPostit): void {
     console.log('onClickItem', postit);
     const findedPostit = this.postitService.find(postit.id);
-    if (findedPostit.id) {
+    if (findedPostit?.id) {
       this.navigateToDetail(findedPostit);
     }
   }
@@ -113,5 +110,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.routerExtensions.navigate(['/questions/', item.id]);
   }
 
-  postitTrackBy = (postit: IPostit): string => postit.id;
+  postitTrackBy(postit: IPostit): string {
+    return postit.id;
+  }
 }
