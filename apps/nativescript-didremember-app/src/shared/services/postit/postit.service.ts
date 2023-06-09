@@ -7,12 +7,12 @@ import { PostitServiceContract } from './postit.service.contract';
 
 @Injectable({ providedIn: 'root' })
 export class PostitService implements PostitServiceContract {
+
   public postits = new BehaviorSubject<IPostit[]>([]);
 
-  init(): void {
+  constructor() {
     const postits: IPostit[] = this.list();
-    this.save(postits);
-    this.postits.next(this.list());
+    this.postits.next(postits);
   }
 
   clear = (): void => this.save([]);

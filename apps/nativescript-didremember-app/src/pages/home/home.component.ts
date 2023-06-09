@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Screen, knownFolders, OrientationChangedEventData } from '@nativescript/core';
 import { IPostit } from '../../shared/interfaces/postit.interface';
 import { RouterExtensions } from '@nativescript/angular';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { PostitServiceContract } from '../../shared/services/postit/postit.service.contract';
 import { on } from '@nativescript/core/application';
 import { off } from '@nativescript/core/application';
@@ -16,7 +16,7 @@ import * as Https from '@nativescript-community/https';
 export class HomeComponent implements OnInit, OnDestroy {
   sizeScreen = 0;
   postits: IPostit[] = [];
-  postits$: Subscription;
+  postits$: Subscription = null;
 
   constructor(
     private postitService: PostitServiceContract,
@@ -88,7 +88,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.postits$.unsubscribe();
+    if (this.postits$) {
+      this.postits$.unsubscribe();
+      this.postits$ = null;
+    }
     off("orientationChanged", () => {
       console.log('remove watch orientationChanged');
     });

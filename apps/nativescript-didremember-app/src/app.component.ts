@@ -23,7 +23,7 @@ import { JailBreaker } from '@dieover/jail-breaker';
 export class AppComponent implements OnInit {
 
   public appVersion = '0.0';
-  public sideDrawerTransition: DrawerTransitionBase = new SlideAlongTransition();
+  public sideDrawerTransition: DrawerTransitionBase = new SlideInOnTopTransition();
 
   private _activatedUrl: string;
 
@@ -36,7 +36,6 @@ export class AppComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this._activatedUrl = '/home';
     this.appVersion = `v${(await Utils.getVersionName())}`;
-    this.postitService.init();
     this.router.events.pipe(
       filter((event: RouterEvent) => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
