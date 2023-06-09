@@ -1,7 +1,7 @@
 <StackLayout class="Page">
   <did-toolbar title="POSTiT!"></did-toolbar>
-  <GridLayout columns="*" rows="*,auto">
-    <ScrollView [scrollBarIndicatorVisible]="false">
+  <GridLayout columns="*" rows="*">
+    <ScrollView [scrollBarIndicatorVisible]="false" col="0" row="0">
       <StackLayout>
         <ng-container *ngIf="!postits.length">
           <GridLayout class="not-find" col="0" row="0" columns="*,auto,*" rows="*,auto,auto,*">

@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.makeSSLPinning();
+    this.makeSSLPinning();
 
     on("orientationChanged", (evt: OrientationChangedEventData) => {
       console.log('orientationChanged', evt.newValue);

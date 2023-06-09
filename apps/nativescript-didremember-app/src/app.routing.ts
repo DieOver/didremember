@@ -3,10 +3,18 @@ import { Routes } from '@angular/router';
 import { NativeScriptRouterModule } from '@nativescript/angular';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/pokemon', pathMatch: 'full' },
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then((m) => m.HomeModule),
+  },
+  {
+    path: 'pokemon',
+    loadChildren: () => import('./pages/pokemon/pokemon.module').then((m) => m.PokemonModule),
+  },
+  {
+    path: 'pokemon-detail',
+    loadChildren: () => import('./pages/pokemon-detail/pokemon-detail.module').then((m) => m.PokemonDetailModule),
   },
   {
     path: 'manarola',

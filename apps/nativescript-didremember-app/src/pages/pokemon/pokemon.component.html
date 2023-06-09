@@ -1,0 +1,17 @@
+<StackLayout class="Page">
+  <did-toolbar title="POKEMON"></did-toolbar>
+  <GridLayout columns="*" rows="*">
+    <ScrollView [scrollBarIndicatorVisible]="false" col="0" row="0">
+      <StackLayout>
+        <WrapLayout>
+          <StackLayout (tap)="openDetail(pokemon)" class="card-pokemon" *ngFor="let pokemon of pokemons;">
+            <AbsoluteLayout>
+              <StackLayout [style.backgroundColor]="chooseColor(pokemon)" top="60" left="20"></StackLayout>
+              <Image top="0" left="80" [src]="pokemon.sprites.other['official-artwork'].front_default" [sharedTransitionTag]="'pokemon-'+pokemon.id" />
+            </AbsoluteLayout>
+          </StackLayout>
+        </WrapLayout>
+      </StackLayout>
+    </ScrollView>
+  </GridLayout>
+</StackLayout>

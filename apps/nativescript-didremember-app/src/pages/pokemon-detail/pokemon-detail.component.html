@@ -1,0 +1,11 @@
+<StackLayout class="Page" [style.backgroundColor]="colorBg">
+  <did-toolbar [canBack]="true" title="POKEMON"></did-toolbar>
+  <GridLayout columns="*" rows="*">
+    <ScrollView [scrollBarIndicatorVisible]="false" col="0" row="0">
+      <StackLayout>
+        <Image [sharedTransitionTag]="nameImageAnimated" [src]="imageSrc" width="300" height="300" />
+        <Label [text]="name"></Label>
+      </StackLayout>
+    </ScrollView>
+  </GridLayout>
+</StackLayout>
