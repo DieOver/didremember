@@ -13,8 +13,7 @@ import { Utils } from './shared/utils/util';
 import { PostitServiceContract } from './shared/services/postit/postit.service.contract';
 import { IStatusBar } from './shared/interfaces/statusbar.interface';
 import { JailBreaker } from '@dieover/jail-breaker';
-
-// declare const com: any;
+import { exit } from 'nativescript-exit';
 
 @Component({
   selector: 'app-root',
@@ -34,20 +33,19 @@ export class AppComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this._activatedUrl = '/home';
-    this.appVersion = `v${(await Utils.getVersionName())}`;
-    this.router.events.pipe(
-      filter((event: RouterEvent) => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
-      this._activatedUrl = event.urlAfterRedirects;
-      this.changeStatusBarText(event.urlAfterRedirects);
-    });
-
-    // console.log('com.nsplugins', com.nsplugins);
-    // const jailBreaker = new com.nsplugins.JailBreaker(U.android.getApplicationContext());
-    // console.log('jailBreaker', jailBreaker);
-    // console.log('jailBreaker isRooted', jailBreaker.isRooted());
     console.log('jailBreaker isRooted', JailBreaker.isRooted());
+    if (JailBreaker.isRooted()) {
+      exit();
+    } else {
+      this._activatedUrl = '/home';
+      this.appVersion = `v${(await Utils.getVersionName())}`;
+      this.router.events.pipe(
+        filter((event: RouterEvent) => event instanceof NavigationEnd)
+      ).subscribe((event: NavigationEnd) => {
+        this._activatedUrl = event.urlAfterRedirects;
+        this.changeStatusBarText(event.urlAfterRedirects);
+      });
+    }
   }
 
   changeStatusBarText(url: string): void {
