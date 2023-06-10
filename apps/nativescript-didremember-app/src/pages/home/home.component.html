@@ -3,13 +3,7 @@
   <GridLayout columns="*" rows="*">
     <ScrollView [scrollBarIndicatorVisible]="false" col="0" row="0">
       <StackLayout>
-        <ng-container *ngIf="!postits.length">
-          <GridLayout class="not-find" columns="*" rows="*,auto,auto,*">
-            <Label col="0" row="1" text="Nenhuma Categoria." class="no_content_label"></Label>
-            <Label col="0" row="2" text="Clique aqui para criar uma." class="no_content_label_clique" (tap)="navigateToRegisterCategory()"></Label>
-          </GridLayout>
-        </ng-container>
-        <ng-container *ngIf="postits.length">
+        <ng-container *ngIf="postits.length; else listPostits;">
           <WrapLayout>
             <ng-container *ngFor="let postit of postits; let i = index; trackBy: postitTrackBy;">
               <did-card
@@ -20,6 +14,12 @@
             </ng-container>
           </WrapLayout>
         </ng-container>
+        <ng-template #listPostits>
+          <GridLayout class="not-find" columns="*" rows="*,auto,auto,*">
+            <Label col="0" row="1" text="Nenhuma Categoria." class="no_content_label"></Label>
+            <Label col="0" row="2" text="Clique aqui para criar uma." class="no_content_label_clique" (tap)="navigateToRegisterCategory()"></Label>
+          </GridLayout>
+        </ng-template>
       </StackLayout>
     </ScrollView>
   </GridLayout>
