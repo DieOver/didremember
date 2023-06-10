@@ -1,0 +1,20 @@
+<StackLayout class="Page">
+  <GridLayout columns="*" rows="*">
+    <StackLayout col="0" row="0" class="content">
+      <Label class="h1" text="Store"></Label>
+      <ScrollView [scrollBarIndicatorVisible]="false">
+        <StackLayout>
+          <StackLayout [sharedTransitionTag]="'training-1'" class="card" (tap)="goToDetail('training-1')">
+            <Label text="Traning Plan"></Label>
+          </StackLayout>
+          <StackLayout [sharedTransitionTag]="'training-2'" class="card" (tap)="goToDetail('training-2')">
+            <Label text="Traning Plan"></Label>
+          </StackLayout>
+          <StackLayout [sharedTransitionTag]="'training-3'" class="card" (tap)="goToDetail('training-3')">
+            <Label text="Traning Plan"></Label>
+          </StackLayout>
+        </StackLayout>
+      </ScrollView>
+    </StackLayout>
+  </GridLayout>
+</StackLayout>

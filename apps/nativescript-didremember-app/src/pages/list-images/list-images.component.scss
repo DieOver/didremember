@@ -1,0 +1,25 @@
+StackLayout.content {
+  padding: 16;
+  Label.h1 {
+    margin-bottom: 16;
+    font-weight: bold;
+  }
+  ScrollView {
+    StackLayout {
+      StackLayout.card {
+        margin-bottom: 16;
+        padding: 76 16 16 16;
+        background-color: black;
+        background-image: url('~/assets/images/training.jpeg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        border-radius: 8;
+        Label {
+          color: white;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

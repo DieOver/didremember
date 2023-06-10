@@ -1,0 +1,13 @@
+StackLayout.card {
+  padding: 16;
+  background-color: black;
+  background-image: url('~/assets/images/training.jpeg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  Label {
+    color: white;
+  }
+}

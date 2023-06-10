@@ -54,13 +54,14 @@ export class AppComponent implements OnInit {
     switch (url) {
       case String(url.match(/\/home$/gi)):
         param.type = 'light'; break;
-
       case String(url.match(/\/category$/gi)):
+        param.type = 'dark'; break;
+      case String(url.match(/\/list-images$/gi)):
+        param.type = 'dark'; break;
       case String(url.match(/\/questions\/(\w{4}-\w{4})$/gi)):
         param.type = 'dark'; break;
-
       default:
-        param.type = 'light'; break;
+        param.type = 'dark'; break;
     }
     Utils.setStatusBarColor(param);
   }

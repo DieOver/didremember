@@ -9,6 +9,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then((m) => m.HomeModule),
   },
   {
+    path: 'list-images',
+    loadChildren: () => import('./pages/list-images/list-images.module').then((m) => m.ListImagesModule),
+  },
+  {
     path: 'pokemon',
     loadChildren: () => import('./pages/pokemon/pokemon.module').then((m) => m.PokemonModule),
   },
