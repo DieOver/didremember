@@ -3,7 +3,11 @@ import { Routes } from '@angular/router';
 import { NativeScriptRouterModule } from '@nativescript/angular';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/category', pathMatch: 'full' },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then((m) => m.HomeModule),
@@ -35,6 +39,10 @@ const routes: Routes = [
   {
     path: 'questions',
     loadChildren: () => import('./pages/questions/questions.module').then((m) => m.QuestionsModule),
+  },
+  {
+    path: '**',
+    redirectTo: ''
   },
 ];
 
