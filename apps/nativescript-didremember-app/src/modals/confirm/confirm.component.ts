@@ -12,7 +12,11 @@ export class ConfirmComponent {
     private params: ModalDialogParams
   ) { }
 
-  closeModal = (): void => {
-    this.params.closeCallback('asdasdsadasd');
+  closeModal = (confirm: boolean): void => {
+    if (confirm) {
+      this.params.closeCallback(true);
+    } else {
+      this.params.closeCallback(false);
+    }
   }
 }

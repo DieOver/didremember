@@ -36,7 +36,7 @@
     "base-64": "^1.0.0",
     "nativescript-audio": "^6.2.6",
     "nativescript-exit": "^1.0.1",
-    "nativescript-theme-core": "~1.0.4",
+    "nativescript-theme-core": "^2.0.24",
     "nativescript-webview-interface": "^1.4.4",
     "rxjs": "~7.6.0",
     "tslib": "^2.0.0",

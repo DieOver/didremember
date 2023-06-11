@@ -1,97 +1,17 @@
-/**
- * The following are common styles for both iOS and Android
- * for specific overrides: see the overrides.{ios,android}.scss
- */
-@import './colors';
-@import './variables';
-@import './mixins';
+@import '~nativescript-theme-core/core';
+@import '~nativescript-theme-core/scss/mixins/index';
 
-// {N} core theme rulesets (mix/match these or only use what you need)
-@import '~nativescript-theme-core/scss/action-bar';
-@import '~nativescript-theme-core/scss/activity-indicator';
-@import '~nativescript-theme-core/scss/buttons';
-@import '~nativescript-theme-core/scss/icons';
-@import '~nativescript-theme-core/scss/forms';
-@import '~nativescript-theme-core/scss/labels';
-@import '~nativescript-theme-core/scss/list-view';
-@import '~nativescript-theme-core/scss/page';
-@import '~nativescript-theme-core/scss/progress';
-@import '~nativescript-theme-core/scss/segmented-bar';
-@import '~nativescript-theme-core/scss/side-drawer';
-@import '~nativescript-theme-core/scss/slider';
-@import '~nativescript-theme-core/scss/switch';
-@import '~nativescript-theme-core/scss/tabs';
-
-// {N} custom styles (create/import other scss files or define as needed)
-// -- START custom --
-@import './action-bar';
-@import './tags';
-// -- END custom
-
-// since {N} core theme utilities are additive to any above class, these should always be last
-@import '~nativescript-theme-core/scss/utilities/index';
-
-StackLayout.Page {
-  background-color: $did-color-light;
-}
-
-.fab {
+Label.fab, Button.fab {
   font-family: 'Font Awesome 5 Brands', 'fa-brands-400';
   font-weight: 400;
 }
 
-.far {
+Label.far, Button.far {
   font-family: 'Font Awesome 5 Free', 'fa-regular-400';
   font-weight: 400;
 }
 
-.fas {
+Label.fas, Button.fas {
   font-family: 'Font Awesome 5 Free', 'fa-solid-900';
   font-weight: 900;
-}
-
-GridLayout.menu {
-  background-color: $did-color-lightner;
-  StackLayout.menu-header {
-    background-color: $did-color-primary;
-  }
-  GridLayout.menu-content {
-    height: 100%;
-    GridLayout {
-      padding: 8;
-      border-top-width: 1;
-      border-top-color: $did-color-light;
-      &[last-child] {
-        border-bottom-width: 1;
-        border-bottom-color: $did-color-light;
-      }
-      &[version] {
-        background-color: $did-color-primary;
-        Label.menu-version {
-          font-size: 12;
-          color: $did-color-lightner;
-          &.small {
-            font-size: 10;
-          }
-        }
-      }
-      Label.menu-icon {
-        text-align: center;
-        margin-right: 8;
-        color: $did-color-primary-light;
-      }
-      Label.menu-label {
-        color: $did-color-primary-light;
-        font-size: 12;
-      }
-      &.selected {
-        Label.menu-icon {
-          color: $did-color-primary;
-        }
-        Label.menu-label {
-          color: $did-color-primary;
-        }
-      }
-    }
-  }
 }

@@ -1,6 +1,8 @@
 @import '../../../scss/colors';
 
 :host {
+  --toolbar-padding: 4 16;
+  --toolbar-margin: 0;
   --font-color: var(--did-color-secondary);
   --font-size: 14;
   --font-weight: bold;
@@ -8,49 +10,32 @@
   --text-transform: uppercase;
   --primary-color: var(--did-color-primary);
   --secondary-color: var(--did-color-primary);
-  --padding: 0;
   --layout-gradient-direction: to right;
-  --layout-padding-top: 16;
 
   --icon-font-size: 16;
-  --icon-margin-bottom: 16;
-  --icon-box-shadow: none;
   --icon-background-color: transparent;
-  --icon-width: 38;
-  --icon-height: 38;
 
-  --label-padding-left: 16;
-  --label-padding-right: 16;
-  --label-padding-bottom: 16;
   --label-font-size: 28;
   --label-text-transform: unset;
+  --label-background-color: transparent;
 }
 
-StackLayout.toolbar {
+GridLayout.toolbar {
   background-color: var(--primary-color);
   background: linear-gradient(var(--layout-gradient-direction), var(--primary-color), var(--secondary-color));
-  padding: var(--padding);
-  GridLayout.actions-bar {
-    padding: var(--padding);
-    padding-top: var(--layout-padding-top);
-    Button.icon {
-      color: var(--font-color);
-      font-size: var(--icon-font-size);
-      margin-bottom: var(--icon-margin-bottom);
-      background-color: var(--icon-background-color);
-      box-shadow: var(--icon-box-shadow);
-      width: var(--icon-width);
-      height: var(--icon-height);
-    }
-    Label.title {
-      color: var(--font-color);
-      font-size: var(--label-font-size);
-      font-weight: var(--font-weight);
-      text-transform: var(--label-text-transform);
-      padding-left: var(--label-padding-left);
-      padding-bottom: var(--label-padding-bottom);
-      padding-right: var(--label-padding-right);
-      font-family: var(--font-family);
-    }
+  padding: var(--toolbar-padding);
+  margin: var(--toolbar-margin);
+  Label.icon {
+    color: var(--font-color);
+    font-size: var(--icon-font-size);
+    background-color: var(--icon-background-color);
+  }
+  Label.title {
+    color: var(--font-color);
+    font-size: var(--label-font-size);
+    font-weight: var(--font-weight);
+    text-transform: var(--label-text-transform);
+    background-color: var(--label-background-color);
+    font-family: var(--font-family);
   }
 }

@@ -10,9 +10,11 @@
   --label-error-font-size: 12;
   --label-error-color: var(--did-color-error);
 
-  --text-border-bottom-width: 1;
-  --text-border-bottom-color: var(--did-color-primary-light);
   --text-color: var(--did-color-medium);
+  --text-margin: 4 0 0 0;
+  --text-padding: 0 0 0 0;
+  --text-border-bottom-width: 0.5;
+  --text-border-bottom-color: var(--did-color-primary-light);
   --text-placeholder-color: var(--did-color-light);
 }
 
@@ -26,9 +28,11 @@ StackLayout.input-text {
   }
 
   TextField {
+    color: var(--text-color);
+    margin: var(--text-margin);
+    padding: var(--text-padding);
     border-bottom-width: var(--text-border-bottom-width);
     border-bottom-color: var(--text-border-bottom-color);
-    color: var(--text-color);
     placeholder-color: var(--text-placeholder-color);
   }
 

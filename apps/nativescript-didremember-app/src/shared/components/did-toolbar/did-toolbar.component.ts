@@ -9,13 +9,11 @@ import { PostitServiceContract } from '../../services/postit/postit.service.cont
   selector: 'did-toolbar',
   styleUrls: ['./did-toolbar.component.scss'],
   template: `
-    <StackLayout class="toolbar">
-      <GridLayout class="actions-bar" columns="auto, *, auto" rows="auto">
-        <Button *ngIf="canBack" row="0" col="0" (tap)="back()" class="icon fas" text="&#xf060;"></Button>
-        <Button *ngIf="!canBack" row="0" col="0" (tap)="onDrawerButtonTap()" class="icon fas" text="&#xf0c9;"></Button>
-        <Label row="0" col="2" class="title" (tap)="clear()" [text]="title"></Label>
-      </GridLayout>
-    </StackLayout>
+    <GridLayout class="toolbar" columns="auto, *, auto" rows="auto">
+      <Label *ngIf="canBack" row="0" col="0" (tap)="back()" class="icon fas" text="&#xf060;"></Label>
+      <Label *ngIf="!canBack" row="0" col="0" (tap)="onDrawerButtonTap()" class="icon fas" text="&#xf0c9;"></Label>
+      <Label row="0" col="2" class="title" (tap)="clear()" [text]="title"></Label>
+    </GridLayout>
   `
 })
 export class DidToolbarComponent {

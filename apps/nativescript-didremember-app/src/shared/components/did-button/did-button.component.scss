@@ -3,16 +3,19 @@
 :host {
   --background-color: var(--did-color-secondary);
   --color: var(--did-color-primary);
-  --font-weight: bold;
+  --font-weight: 600;
   --text-transform: uppercase;
   --width: 100%;
   --padding: 8 16;
   --margin: 0;
+  --border-radius: 100%;
+  --font-size: 18;
 }
 
 Button {
   width: var(--width);
-  border-radius: 50;
+  font-size: var(--font-size);
+  border-radius: var(--border-radius);
   background-color: var(--background-color);
   color: var(--color);
   font-weight: var(--font-weight);

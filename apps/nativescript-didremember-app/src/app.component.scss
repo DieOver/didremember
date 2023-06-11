@@ -1,0 +1,47 @@
+@import './scss/colors';
+
+GridLayout.menu {
+  background-color: $did-color-lightner;
+  StackLayout.menu-header {
+    background-color: $did-color-primary;
+  }
+  GridLayout.menu-content {
+    height: 100%;
+    GridLayout {
+      padding: 8;
+      border-top-width: 1;
+      border-top-color: $did-color-light;
+      &[last-child] {
+        border-bottom-width: 1;
+        border-bottom-color: $did-color-light;
+      }
+      &[version] {
+        background-color: $did-color-primary;
+        Label.menu-version {
+          font-size: 12;
+          color: $did-color-lightner;
+          &.small {
+            font-size: 10;
+          }
+        }
+      }
+      Label.menu-icon {
+        text-align: center;
+        margin-right: 8;
+        color: $did-color-primary-light;
+      }
+      Label.menu-label {
+        color: $did-color-primary-light;
+        font-size: 12;
+      }
+      &.selected {
+        Label.menu-icon {
+          color: $did-color-primary;
+        }
+        Label.menu-label {
+          color: $did-color-primary;
+        }
+      }
+    }
+  }
+}

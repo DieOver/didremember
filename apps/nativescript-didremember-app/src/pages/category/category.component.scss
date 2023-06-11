@@ -1,5 +1,9 @@
 @import '../../scss/colors';
 
+StackLayout.Page {
+  background-color: $did-color-light;
+}
+
 StackLayout.content {
   StackLayout.header {
     border-bottom-width: 1;
@@ -7,6 +11,7 @@ StackLayout.content {
     GridLayout {
       margin: 16;
       FlexboxLayout {
+        width: 100%;
         .cancel {
           --width: 80%;
           --margin: 0 8 0 0;
