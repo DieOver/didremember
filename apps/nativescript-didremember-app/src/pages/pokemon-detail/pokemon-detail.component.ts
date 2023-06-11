@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouterExtensions } from '@nativescript/angular';
 
@@ -7,7 +7,7 @@ import { RouterExtensions } from '@nativescript/angular';
   templateUrl: './pokemon-detail.component.html',
   styleUrls: ['./pokemon-detail.component.scss'],
 })
-export class PokemonDetailComponent {
+export class PokemonDetailComponent implements OnInit {
 
   nameImageAnimated = '';
   imageSrc = '';
@@ -24,4 +24,6 @@ export class PokemonDetailComponent {
     this.colorBg = this.activatedRoute.snapshot.queryParamMap.get('colorBg');
   }
 
+  ngOnInit(): void {
+  }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouterExtensions } from '@nativescript/angular';
 
@@ -7,7 +7,7 @@ import { RouterExtensions } from '@nativescript/angular';
   templateUrl: './detail-image.component.html',
   styleUrls: ['./detail-image.component.scss'],
 })
-export class DetailImageComponent {
+export class DetailImageComponent implements OnInit {
 
   nameImageAnimated = '';
 
@@ -16,6 +16,9 @@ export class DetailImageComponent {
     private activatedRoute: ActivatedRoute
   ) {
     this.nameImageAnimated = this.activatedRoute.snapshot.queryParamMap.get('nameImageAnimated');
+  }
+
+  ngOnInit(): void {
   }
 
   goBack() {

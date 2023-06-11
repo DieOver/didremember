@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterExtensions } from '@nativescript/angular';
 import { PageTransition, SharedTransition } from '@nativescript/core';
 
@@ -7,11 +7,14 @@ import { PageTransition, SharedTransition } from '@nativescript/core';
   templateUrl: './list-images.component.html',
   styleUrls: ['./list-images.component.scss'],
 })
-export class ListImagesComponent {
+export class ListImagesComponent implements OnInit {
 
   constructor(
     private routerExtensions: RouterExtensions
   ) {}
+
+  ngOnInit(): void {
+  }
 
   goToDetail(nameImageAnimated: string) {
     this.routerExtensions.navigate(['list-images', 'detail'], {

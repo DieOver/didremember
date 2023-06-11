@@ -16,7 +16,6 @@ import {
   knownFolders,
   Observable,
   Slider,
-  Utils,
 } from '@nativescript/core';
 import {
   AudioPlayerOptions,
@@ -339,7 +338,7 @@ export class ManarolaComponent extends Observable implements OnInit, OnDestroy {
 
   private async _startDurationTracking(duration) {
     if (this._player && this._player.isAudioPlaying()) {
-      const timerId = Utils.setInterval(() => {
+      const timerId = setInterval(() => {
         this.remainingDuration = duration - this._player.currentTime;
         console.log(`this.remainingDuration = ${this.remainingDuration}`);
       }, 1000);
@@ -348,7 +347,7 @@ export class ManarolaComponent extends Observable implements OnInit, OnDestroy {
 
   private _startVolumeTracking() {
     if (this._player) {
-      const timerId = Utils.setInterval(() => {
+      const timerId = setInterval(() => {
         console.log('volume tracking', this._player.volume);
         this.currentVolume = this._player.volume;
       }, 2000);

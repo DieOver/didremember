@@ -1,19 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { Event, NavigationEnd, NavigationStart, Router, RouterEvent } from '@angular/router';
 import { NavigationOptions, RouterExtensions } from '@nativescript/angular';
 import {
   DrawerTransitionBase,
   RadSideDrawer,
-  SlideAlongTransition,
   SlideInOnTopTransition,
 } from 'nativescript-ui-sidedrawer';
-import { filter } from 'rxjs/operators';
-import { Application, PageTransition, SharedTransition, Utils as U } from '@nativescript/core';
+import { Application } from '@nativescript/core';
 import { Utils } from './shared/utils/util';
-import { PostitServiceContract } from './shared/services/postit/postit.service.contract';
-import { IStatusBar } from './shared/interfaces/statusbar.interface';
 import { JailBreaker } from '@dieover/jail-breaker';
 import { exit } from 'nativescript-exit';
+import { IStatusBar } from './shared/interfaces/statusbar.interface';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -29,8 +27,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private routerExtensions: RouterExtensions,
-    private postitService: PostitServiceContract
+    private routerExtensions: RouterExtensions
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -41,28 +38,27 @@ export class AppComponent implements OnInit {
       this._activatedUrl = '/home';
       this.appVersion = `v${(await Utils.getVersionName())}`;
       this.router.events.pipe(
-        filter((event: RouterEvent) => event instanceof NavigationEnd)
-      ).subscribe((event: NavigationEnd) => {
-        this._activatedUrl = event.urlAfterRedirects;
-        this.changeStatusBarText(event.urlAfterRedirects);
+        filter((e: Event): e is RouterEvent => e instanceof RouterEvent)
+      ).subscribe((e: RouterEvent) => {
+        if (e instanceof NavigationStart) {
+          this._activatedUrl = e.url;
+          this.changeStatusBarText(e.url);
+        }
       });
     }
   }
 
   changeStatusBarText(url: string): void {
     console.log('changeStatusBarText', url);
-    const param: IStatusBar = { type: 'light', color: '' };
+    let param: IStatusBar = { type: 'light', color: '' };
     switch (url) {
-      case String(url.match(/\/home$/gi)):
-        param.type = 'light'; break;
-      case String(url.match(/\/category$/gi)):
-        param.type = 'dark'; break;
-      case String(url.match(/\/list-images$/gi)):
-        param.type = 'dark'; break;
-      case String(url.match(/\/questions\/(\w{4}-\w{4})$/gi)):
-        param.type = 'dark'; break;
-      default:
-        param.type = 'dark'; break;
+      case String(url.match(/\/home$/gi)): param = { type: 'light', color: '' }; break;
+      case String(url.match(/\/manarola$/gi)): param = { type: 'light', color: '' }; break;
+      case String(url.match(/\/pokemon$/gi)): param = { type: 'light', color: '' }; break;
+      case String(url.match(/\/category$/gi)): param = { type: 'light', color: '' }; break;
+      case String(url.match(/\/questions\/(\w{4}-\w{4})$/gi)): param = { type: 'light', color: '' }; break;
+      case String(url.match(/\/list-images$/gi)): param = { type: 'dark', color: '' }; break;
+      default: param = { type: 'dark', color: '' }; break;
     }
     Utils.setStatusBarColor(param);
   }
@@ -76,7 +72,7 @@ export class AppComponent implements OnInit {
       // transition: SharedTransition.custom(new PageTransition())
     };
 
-    this.routerExtensions.navigate([navItemRoute], navigationOptions);
+    this.routerExtensions.navigateByUrl(navItemRoute, navigationOptions);
 
     const sideDrawer = <RadSideDrawer>Application.getRootView();
     sideDrawer.closeDrawer();

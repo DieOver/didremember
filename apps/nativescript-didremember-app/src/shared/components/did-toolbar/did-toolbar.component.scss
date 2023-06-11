@@ -14,6 +14,9 @@
 
   --icon-font-size: 16;
   --icon-background-color: transparent;
+  --icon-margin: 0;
+  --icon-text-align: left;
+  --icon-width: 30;
 
   --label-font-size: 28;
   --label-text-transform: unset;
@@ -25,10 +28,13 @@ GridLayout.toolbar {
   background: linear-gradient(var(--layout-gradient-direction), var(--primary-color), var(--secondary-color));
   padding: var(--toolbar-padding);
   margin: var(--toolbar-margin);
-  Label.icon {
+  Button.icon {
     color: var(--font-color);
     font-size: var(--icon-font-size);
     background-color: var(--icon-background-color);
+    margin: var(--icon-margin);
+    text-align: var(--icon-text-align);
+    width: var(--icon-width);
   }
   Label.title {
     color: var(--font-color);
